@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+
+
+
+
+
+		<!-- Tree view starts -->
+
+		<record id="view_city_code_tree" model="ir.ui.view">
+			<field name="name">city.code.tree</field>
+			<field name="model">city.code</field>
+			<field name="arch" type="xml">
+				<tree string="City Code">
+					<field name="name"/>
+					<field name="code"/>
+					<field name="active"/>
+
+				</tree>
+			</field>
+		</record>
+
+		<!-- Tree view end -->
+
+		<!-- Form view starts -->
+		<record id="view_city_code_form" model="ir.ui.view">
+			<field name="name">city.code.form</field>
+			<field name="model">city.code</field>
+			<field name="arch" type="xml">
+				<form string="City Code">
+					<sheet>
+						<group>
+							<group>
+								<field name="name" class="oe_inline"/>
+								<field name="code" class="oe_inline"/>
+								<field name="active" class="oe_inline"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Form view ends -->
+
+		<!-- Search view starts -->
+		<record id="view_city_code_filter" model="ir.ui.view">
+			<field name="name">city.code.list.select</field>
+			<field name="model">city.code</field>
+			<field name="arch" type="xml">
+				<search string="Search Code">
+					<field name="name"/>
+					<field name="code"/>
+					<!-- <separator/>
+					<group expand="0" string="Group By">
+					<filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+					</group> -->
+				</search>
+			</field>
+		</record>
+
+		<!-- Search view ends -->
+
+		<!-- Action view starts -->
+		<record id="action_city_code" model="ir.actions.act_window">
+			<field name="name">City Code</field>
+			<field name="res_model">city.code</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form</field>
+
+			<!-- <field name="search_view_id" ref="view_vertical_business_filter"/> -->
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Click to create city code for Holiday Business.</p>
+			</field>
+		</record>
+		<!-- Action view ends -->
+
+		<!-- Menuitems starts -->
+
+		<!-- <menuitem id="main_menu_city_code" name="City Code" parent="base.menu_administration" sequence="8"/> -->
+		<menuitem action="action_city_code" name="City Code" id="menu_city_code" parent="main_menu_custom_configuration" sequence="1"/>
+
+		<!-- Menuitems ends -->
+
+		<!-- customer filter -->
+
+		<!-- Tree view starts -->
+		<record id="view_routesms_partner_filter_tree" model="ir.ui.view">
+			<field name="name">routsms.partner.filter.tree</field>
+			<field name="model">routsms.partner.filter</field>
+			<field name="arch" type="xml">
+				<tree string="Partners">
+					<field name="name"/>
+					<field name="user_id"/>
+					<field name="lead_status"/>
+					<field name="is_active"/>
+					<field name="creation_date"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- Tree view end -->
+
+		<!-- Action view starts -->
+		<record id="action_routesms_partner_filter" model="ir.actions.act_window">
+			<field name="name">Partners</field>
+			<field name="res_model">routsms.partner.filter</field>
+			<field name='view_type'>tree</field>
+			<field name='view_mode'>tree</field>
+
+			<!-- <field name="search_view_id" ref="view_vertical_business_filter"/> -->
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">No Record Found .</p>
+			</field>
+		</record>
+		<!-- Action view ends -->
+
+		<!-- Menuitems starts -->
+
+		<!-- <menuitem id="main_menu_routesms_partner_filter" name="Partners" parent="base.menu_administration" sequence="8"/> -->
+		<menuitem action="action_routesms_partner_filter" name="Partners" id="menu_routesms_partner_filter" parent="main_menu_custom_configuration" sequence="1"/>
+
+		<!-- Menuitems ends -->
+
+		<!-- SYSTEM SYSTEM -->
+		<!-- Tree view starts -->
+		<record id="view_setting_tree" model="ir.ui.view">
+			<field name="name">settings.tree</field>
+			<field name="model">settings</field>
+			<field name="arch" type="xml">
+				<tree string="Settings">
+					<field name="name"/>
+					<field name="code"/>
+					<field name="active"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- Tree view end -->
+
+		<!-- Form view starts -->
+		<record id="view_settings_form" model="ir.ui.view">
+			<field name="name">settings.form</field>
+			<field name="model">settings</field>
+			<field name="arch" type="xml">
+				<form string="Settings">
+					<sheet>
+						<group>
+							<group>
+								<field name="name" class="oe_inline"/>
+								<field name="code" class="oe_inline"/>
+								<field name="active" class="oe_inline"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Form view ends -->
+
+		<!-- Search view starts -->
+		<record id="view_settings_filter" model="ir.ui.view">
+			<field name="name">settings.list.select</field>
+			<field name="model">settings</field>
+			<field name="arch" type="xml">
+				<search string="Search Custom Settings">
+					<field name="name"/>
+					<field name="code"/>
+					<!-- <separator/>
+					<group expand="0" string="Group By">
+					<filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+					</group> -->
+				</search>
+			</field>
+		</record>
+
+		<!-- Search view ends -->
+
+		<!-- Action view starts -->
+		<record id="action_custom_settings" model="ir.actions.act_window">
+			<field name="name">settings</field>
+			<field name="res_model">settings</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form</field>
+
+			<!-- <field name="search_view_id" ref="view_vertical_business_filter"/> -->
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Click to create custom settings for system.</p>
+			</field>
+		</record>
+		<!-- Action view ends -->
+
+		<!-- Menuitems starts -->
+		<menuitem action="action_custom_settings" name="System Settings" id="menu_custom_settings" parent="main_menu_custom_configuration" sequence="1"/>
+
+		<!-- Menuitems ends -->
+
+		<!-- USER SETTINGS -->
+
+		<!-- Tree view starts -->
+		<record id="view_user_setting_tree" model="ir.ui.view">
+			<field name="name">user.settings.tree</field>
+			<field name="model">user.settings</field>
+			<field name="arch" type="xml">
+				<tree string="Settings">
+					<field name="name" readonly="1"/>
+					<field name="user_id" required="1"/>
+					<field name="rule" widget="many2many_tags" required="1" />
+					<field name="active"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- Tree view end -->
+
+		<!-- Form view starts -->
+		<record id="view_user_settings_form" model="ir.ui.view">
+			<field name="name">user.settings.form</field>
+			<field name="model">user.settings</field>
+			<field name="arch" type="xml">
+				<form string="User Setting">
+					<sheet>
+						<group>
+							<group>
+								<field name="name" readonly="1"/>
+								<field name="user_id" required="1" attrs="{'readonly': [('readonly_flag','=',True)]}" />
+								<field name="rule" widget="many2many_tags" required="1" on_change="onchange_rule(rule)"/>
+								<field name="active"/>
+								<field name="count_flag" invisible="1" />
+								<field name="count" attrs="{'invisible': [('count_flag','=',False)]}" />
+								<field name="readonly_flag" invisible="1" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Form view ends -->
+
+		<!-- Search view starts -->
+		<record id="view_user_settings_filter" model="ir.ui.view">
+			<field name="name">user.settings.list.select</field>
+			<field name="model">user.settings</field>
+			<field name="arch" type="xml">
+				<search string="Search Custom Settings">
+					<field name="name"/>
+					<field name="user_id"/>
+					<!-- <separator/>
+					<group expand="0" string="Group By">
+					<filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+					</group> -->
+				</search>
+			</field>
+		</record>
+
+		<!-- Search view ends -->
+
+		<!-- Action view starts -->
+		<record id="action_user_settings" model="ir.actions.act_window">
+			<field name="name">User Settings</field>
+			<field name="res_model">user.settings</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form</field>
+
+			<!-- <field name="search_view_id" ref="view_vertical_business_filter"/> -->
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Click to assign rules to system users.</p>
+			</field>
+		</record>
+		<!-- Action view ends -->
+
+		<!-- Menuitems starts -->
+		<menuitem action="action_user_settings" name="User Setting" id="menu_user_settings" parent="main_menu_custom_configuration" sequence="1"/>
+
+		<!-- Menuitems ends -->
+
+		<!-- SERVERS SETTING -->
+
+		<!-- Tree view starts -->
+		<record id="view_server_setting_tree" model="ir.ui.view">
+			<field name="name">server.tree</field>
+			<field name="model">server</field>
+			<field name="arch" type="xml">
+				<tree string="Server Settings">
+					<field name="server"/>
+					<field name="name" />
+					<field name="locality"/>
+					<field name="type" />
+
+					
+
+				</tree>
+			</field>
+		</record>
+
+		<!-- Tree view end -->
+
+		<!-- Form view starts -->
+		<record id="view_user_server_form" model="ir.ui.view">
+			<field name="name">server.form</field>
+			<field name="model">server</field>
+			<field name="arch" type="xml">
+				<form string="Server Setting">
+					<sheet>
+						<group>
+							<group>
+								<field name="server"/>
+								<field name="name" class="oe_inline"  />								
+								<field name="locality" required="1"/>
+								<field name="type" required="1"/>								
+								<field name="active" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Form view ends -->
+
+		<!-- Search view starts -->
+		<record id="view_user_server_filter" model="ir.ui.view">
+			<field name="name">server.list.select</field>
+			<field name="model">server</field>
+			<field name="arch" type="xml">
+				<search string="Search Server Settings">
+					
+					<field name="server"/>
+					<field name="name"/>
+					<!-- <separator/>
+					<group expand="0" string="Group By">
+					<filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+					</group> -->
+				</search>
+			</field>
+		</record>
+
+		<!-- Search view ends -->
+
+		<!-- Action view starts -->
+		<record id="action_server_settings" model="ir.actions.act_window">
+			<field name="name">Server Settings</field>
+			<field name="res_model">server</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form</field>
+
+			<!-- <field name="search_view_id" ref="view_vertical_business_filter"/> -->
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Click to add server information</p>
+			</field>
+		</record>
+		<!-- Action view ends -->
+
+		<!-- Menuitems starts -->
+		<menuitem action="action_server_settings" name="Servers" id="menu_server_settings" parent="main_menu_custom_configuration" sequence="1"/>
+
+		<!-- Menuitems ends -->
+
+
+
+
+<!-- international user -->
+
+		<!-- Tree view starts -->
+
+        <record id="view_int_user_tree" model="ir.ui.view">
+            <field name="name">int.user.tree</field>
+            <field name="model">int.user</field>
+            <field name="arch" type="xml">
+                <tree string="Tracker">
+	                <field name="name" class="oe_inline"/>
+                    
+                </tree>
+            </field>
+        </record>
+
+		<!-- Tree view end -->
+		
+		
+		<!-- Form view starts -->
+        <record id="view_int_user_form" model="ir.ui.view">
+            <field name="name">int.user.form</field>
+            <field name="model">int.user</field>
+            <field name="arch" type="xml">
+                <form string="Tracker">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="username" class="oe_inline"/>
+                            <field name="name" class="oe_inline"/>
+                            <field name="active"/>
+                           <field name="password" invisible="1" />
+                            <field name="access_token" invisible="1" />
+                            <field name="password_reset" invisible="1" />
+                        </group>
+                    </group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+		<!-- Form view ends -->
+
+		<!-- Search view starts -->
+        <record id="view_int_user_filter" model="ir.ui.view">
+            <field name="name">int.user.list.select</field>
+            <field name="model">int.user</field>
+            <field name="arch" type="xml">
+                <search string="Search international User">
+                            <field name="username" class="oe_inline"/>
+                            
+
+               </search>
+            </field>
+        </record>
+
+		<!-- Search view ends -->
+		
+		<!-- Action view starts -->
+        <record id="action_int_user" model="ir.actions.act_window">
+            <field name="name">International User</field>
+            <field name="res_model">int.user</field>
+            <field name='view_type'>form</field>
+            <field name='view_mode'>tree,form</field>
+            
+            <!-- <field name="search_view_id" ref="view_vertical_business_filter"/> -->
+            
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click To create International Users.
+                </p>
+            </field>
+        </record>
+        <!-- Action view ends -->
+        
+        <!-- Menuitems starts -->
+        
+		<!-- <menuitem id="main_menu_city_code" name="City Code" parent="base.menu_administration" sequence="8"/> -->
+        <menuitem action="action_int_user" name="International User" id="menu_tracker" parent="main_menu_custom_configuration" sequence="1"/>
+
+		<!-- Menuitems ends -->
+		
+
+
+
+
+<!-- ends -->
+
+
+<!-- indian -->
+
+		<!-- Tree view starts -->
+
+        <record id="view_indian_user_tree" model="ir.ui.view">
+            <field name="name">tracker.tree</field>
+            <field name="model">ind.user</field>
+            <field name="arch" type="xml">
+                <tree string="Indian User">
+	                <field name="name" class="oe_inline"/>
+                    
+                </tree>
+            </field>
+        </record>
+
+		<!-- Tree view end -->
+		
+		
+		<!-- Form view starts -->
+        <record id="view_indian_user_form" model="ir.ui.view">
+            <field name="name">ind.user.form</field>
+            <field name="model">ind.user</field>
+            <field name="arch" type="xml">
+                <form string="Tracker">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="username" class="oe_inline"/>
+                            <field name="name" class="oe_inline"/>
+                            <field name="active"/>
+                           <field name="password" invisible="1" />
+                            <field name="access_token" invisible="1" />
+                            <field name="password_reset" invisible="1" />
+                        </group>
+                    </group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+		<!-- Form view ends -->
+
+		<!-- Search view starts -->
+        <record id="view_indian_user_filter" model="ir.ui.view">
+            <field name="name">ind.user.list.select</field>
+            <field name="model">ind.user</field>
+            <field name="arch" type="xml">
+                <search string="Search Indian User">
+                   <field name="username" class="oe_inline"/>
+
+               </search>
+            </field>
+        </record>
+
+		<!-- Search view ends -->
+		
+		<!-- Action view starts -->
+        <record id="action_indian_user" model="ir.actions.act_window">
+            <field name="name">Indian User</field>
+            <field name="res_model">ind.user</field>
+            <field name='view_type'>form</field>
+            <field name='view_mode'>tree,form</field>
+            
+            <!-- <field name="search_view_id" ref="view_vertical_business_filter"/> -->
+            
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create Indian Users.
+                </p>
+            </field>
+        </record>
+        <!-- Action view ends -->
+        
+        <!-- Menuitems starts -->
+        
+		<!-- <menuitem id="main_menu_city_code" name="City Code" parent="base.menu_administration" sequence="8"/> -->
+        <menuitem action="action_indian_user" name="Indian User" id="menu_indian_user" parent="main_menu_custom_configuration" sequence="1"/>
+
+		<!-- Menuitems ends -->
+
+
+<!-- ends -->
+
+
+
+
+
+	</data>
+</openerp>

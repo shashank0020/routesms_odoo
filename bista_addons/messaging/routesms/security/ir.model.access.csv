@@ -1,0 +1,2 @@
+id;name;model_id:id;group_id:id;perm_read;perm_write;perm_create;perm_unlink
+access_vertical_business;vertical_business;model_vertical_business;group_routesms_vertical_business;1;1;1;1

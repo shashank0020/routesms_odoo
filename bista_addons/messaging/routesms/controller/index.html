@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Coming Soon</title>
+<link href="tools/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="tools/jquery.min.js"></script> 
+<script type="text/javascript" src="tools/cufon-yui.js"></script>
+<script >
+
+function validateForm() {
+    var x = document.forms["myForm"]["fname"].value;
+    //if (x == null || x == "") {
+		if (x) {
+			body="Dear Shashank ,"
+		window.location="mailto:shashank_verma0020@bistacloud.com?subject=ROUTESMS SERVER DOWN &body="+body;
+        //alert("Name must be filled out");
+        return false;
+    
+    }
+}
+
+</script>
+<script type="text/javascript" src="tools/Bebas_400.font.js"></script>
+<script type="text/javascript" src="tools/Bell_Gothic_Std_300.font.js"></script>
+<script type="text/javascript">
+	Cufon.replace('a.logo', {fontFamily: 'Bebas'});
+	Cufon.replace('a.logo span', {fontFamily: 'Bell Gothic Std'});
+</script>
+<style>
+
+</style>
+</head>
+<body>
+<div class="main_container">
+	<div class="header">
+		<a class="logo" href="http://routesms.com/"><span></span></a>
+	</div>
+	<div class="content">
+		<h1>Hello.<span>Site is updating ,We are coming  back soon</span></h1>
+		<div class="right_side">
+			<!--<p>// <a href="#">info@somename.com</a><br/>// 506-200-5871</p>
+			<ul class="s_icons">
+				<li class="fb"><a href="#"></a></li>
+				<li class="tw"><a href="#"></a></li>
+				<li class="in"><a href="#"></a></li>
+			</ul>-->
+		</div>
+	</div>
+	
+	
+
+<form name="myForm" action="demo_form.asp1"
+ method="post" onsubmit="return validateForm()" >
+<input type="text" class="field" name="fname" onfocus="if(this.value=='Get Notified (Email Address)') this.value='';" onblur="if(this.value=='' || this.value==' ') this.value='Get Notified (Email Address)';" value="support@bistasolutions">
+<input type="submit" class="submit" value="">
+</form>
+	
+</div>
+</body>
+</html>

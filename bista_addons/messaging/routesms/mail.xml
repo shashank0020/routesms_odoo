@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="email_compose_message_wizard_form_routesms" model="ir.ui.view">
+            <field name="name">mail.compose.message.form.inherit</field>
+            <field name="model">mail.compose.message</field>
+            <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//field[@name='partner_ids']" position="replace">
+                        <field name="partner_ids"
+                            context="{'force_email':True, 'show_email':True}"
+                            invisible="1"/>  
+                </xpath> -->
+
+
+		 <xpath expr="//group[@class='oe_right oe_form']" position="replace">            	
+
+                    <group class="oe_right oe_form" col="1">
+                        <div>
+                            <!--FIX: To avoid css issue of many2one field in footer temporary used oe_form (BUG:1152464)-->
+                            <field name="template_id" nolabel="1" class='oe_inline'
+                                options="{'no_create': True}" invisible="1"
+                                on_change="onchange_template_id(template_id, composition_mode, model, res_id, context)" domain="[('model_id.model','=',model)]"
+                                context="{'default_model': model, 'default_body_html': body, 'default_subject': subject}"/>
+                        </div>
+                        <button icon="/email_template/static/src/img/email_template_save.png"
+                            type="object" name="save_as_template" string="Save as new template" class="oe_link"
+                            help="Save as a new template" invisible="1"/>
+                    </group>     
+                    
+                </xpath>    
+
+                <xpath expr="//field[@name='attachment_ids']" position="replace">
+					<field name="attachment_ids" widget="many2many_binary" string="Attach a file" invisible="1"/> 
+                </xpath>  
+
+                <xpath expr="//div[@groups='base.group_user']" position="replace">
+                        <div groups="base.group_user" attrs="{'invisible': [('is_log', '=', True)]}">
+                            <span attrs="{'invisible': [('composition_mode', '!=', 'mass_mail')]}">
+                                <strong>Email mass mailing</strong> on
+                                <span attrs="{'invisible': [('use_active_domain', '=', True)]}">the selected records</span>
+                                <span attrs="{'invisible': [('use_active_domain', '=', False)]}">the current search filter</span>.
+                            </span>
+                            <!-- <span attrs="{'invisible':[('composition_mode', '!=', 'comment')]}">111Followers of the document and</span> -->
+	                        <field name="partner_ids"
+	                            context="{'force_email':True, 'show_email':True}"
+	                            invisible="1"/> 
+                        </div> 
+                </xpath>                
+                                               
+            </field>
+        </record>
+
+    </data>
+</openerp>
+
+

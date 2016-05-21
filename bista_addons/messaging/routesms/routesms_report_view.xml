@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<!--
+    <record id="paperformat_euro_lowmargin_invoice" model="report.paperformat">
+        <field name="name">European A4 low margin</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">34</field>
+        <field name="dpi">90</field>
+    </record>
+    <report 
+        id="action_report_routesms"
+        model="account.invoice" 
+        string="Badgssse"
+        report_type="qweb-html"
+        name="routesms.report_invoice_document"
+        file="routesms.report_invoice_document"
+    />
+    <record id="action_report_routesms" model="ir.actions.report.xml">
+        <field name="paperformat_id" ref="routesms.paperformat_euro_lowmargin_invoice"/>
+    </record>-->
+    
+        <report
+            id="action_report_check" 
+            model="account.voucher" 
+            string="Check"
+            report_type="qweb-pdf"
+            name="routesms.report_check" 
+            file="routesms.report_check" 
+        /> 
+
+
+
+        <report
+            id="action_report_pettycash" 
+            model="account.bank.statement" 
+            string="Petty Cash Report"
+            report_type="qweb-pdf"
+            name="routesms.report_pettycash" 
+            file="routesms.report_pettycash" 
+        />
+
+        <report
+            id="action_report_chequeupdated" 
+            model="account.voucher" 
+            string="Print Cheque"
+            report_type="qweb-pdf"
+            name="routesms.report_chequeupdated" 
+            file="routesms.report_chequeupdated" 
+        />     
+
+
+        <report
+            id="action_report_pnr" 
+            model="pnr.report" 
+            string="PNR Report"
+            report_type="qweb-pdf"
+            name="routesms.report_pnr" 
+            file="routesms.report_pnr" 
+        />         
+
+        <report
+            id="action_report_source" 
+            model="source.document.report" 
+            string="SOURCE DOCUMENT Report"
+            report_type="qweb-pdf"
+            name="routesms.report_source" 
+            file="routesms.report_source" 
+        /> 
+
+        <report
+            id="action_report_bank_icici" 
+            model="account.voucher" 
+            string="ICICI Bank"
+            report_type="qweb-pdf"
+            name="routesms.report_bank_icici" 
+            file="routesms.report_bank_icici" 
+        /> 
+
+        <report
+            id="action_report_bank_hdfc" 
+            model="account.voucher" 
+            string="HDFC Bank"
+            report_type="qweb-pdf"
+            name="routesms.report_bank_hdfc" 
+            file="routesms.report_bank_hdfc" 
+        />     
+
+<!--        <report
+            id="action_report_sale_purchase" 
+            model="account.invoice" 
+            string="Sale Purchase Report"
+            report_type="qweb-pdf"
+            name="routesms.report_sale_purchase" 
+            file="routesms.report_sale_purchase" 
+        />     -->
+
+    </data>
+</openerp>

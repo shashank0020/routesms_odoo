@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+<!-- CRM STGAES FORM VIEW -->        
+
+
+        <record id="crm_routesms_case_stage_form" model="ir.ui.view">
+            <field name="name">crm.case.stage.inherit</field>
+            <field name="model">crm.case.stage</field>
+            <field name="inherit_id" ref="crm.crm_case_stage_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='on_change']" position="after">
+                	<field name="is_dnd" invisible="1" />         
+                </xpath>                                
+
+            </field>
+        </record>
+
+<!-- ENDS -->
+
+
+<!-- CRM TREEE VIEW -->
+
+
+        <record id="crm_case_tree_view_leads_routesms" model="ir.ui.view">
+            <field name="name">crm.lead.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+					<field name="partner_id"/> 
+					<field name="user_id"/>               	         
+					<field name="current_note"/>  
+                </xpath>                                
+
+                <xpath expr="//field[@name='phone']" position="attributes">
+                	<attribute name="invisible">1</attribute>   
+                	    
+                </xpath>  
+
+                <xpath expr="//field[@name='email_from']" position="attributes">
+                	<attribute name="invisible">1</attribute>         
+                </xpath>                            
+
+<!--                <xpath expr="//field[@name='email_from']" position="after">
+			<field name="partner_email"/> 
+                </xpath>   -->
+
+            </field>
+        </record>
+                                 	
+
+
+<!-- CRM FORM VIEW -->
+
+        <record id="crm_case_form_view_leads_routesms" model="ir.ui.view">
+            <field name="name">crm.lead.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                	<field name="salesperson_alias"  invisible="1" />
+                	<field name="client_ip" readonly="1" />
+                	<field name="employee_id" invisible="1"/>
+                	
+                </xpath>
+
+                <xpath expr="//field[@name='street']" position="attributes">
+                	<attribute name="invisible">1</attribute>   
+                </xpath> 
+
+                <xpath expr="//field[@name='street2']" position="attributes">
+                	<attribute name="invisible">1</attribute>   
+                </xpath> 
+                <xpath expr="//field[@name='city']" position="attributes">
+                	<attribute name="invisible">1</attribute>  
+                </xpath> 
+
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                	<attribute name="invisible">1</attribute>
+                </xpath>    
+
+                <xpath expr="//field[@name='zip']" position="attributes">
+                	<attribute name="invisible">1</attribute>  
+                </xpath> 
+
+		<xpath expr="//notebook" position="inside">
+                        <page string="Log Notes">
+				 <field name="log_note_line"  readonly="0">
+			         	 <form string="Add Internal Notes">
+			                        <group>
+			                            <group>
+			                            	<field name="name" />
+			                                <field name="date" readonly="0"/>
+			                            </group>
+			                        </group>
+			                 </form>
+			                 <tree string="Add Internal Notes" editable="bottom">
+			                            	<field name="name" />
+			                                <field name="date" readonly="0"/>
+			                </tree>
+			        </field>  
+                        </page>          					
+		</xpath>	
+
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+			<attribute name="domain">[('customer','=',True),('is_company','=',True)]</attribute>
+	               	<attribute name="options">{'no_create_edit': False,'no_quick_create':True}</attribute>
+                </xpath>   
+                
+                <xpath expr="//field[@name='referred']" position="after">
+                	<field name="qms_crm" readonly="1" />
+                	<field name="odoo_script_lead" invisible="1"/>
+                	<field name="odoo_script_converted" invisible="1"/>
+                	<field name="odoo_script_new_partner_lead" invisible="1"/>
+                	<field name="odoo_script_new_partner_opportunity" invisible="1"/>
+
+                	<field name="odoo_script_new_crm_opportunity_existing_partner" invisible="1"/>
+                	<field name="odoo_script_new_crm_fresh_existing_partner" invisible="1"/>
+
+
+                </xpath>   
+
+                <xpath expr="//field[@name='phone']" position="attributes">
+                	<attribute name="attrs">{'invisible': [('user_id','=',False)]}</attribute>   
+                	    
+                </xpath>  
+                
+                
+                <xpath expr="//field[@name='mobile']" position="attributes">
+                	<attribute name="attrs">{'invisible': [('user_id','=',False)]}</attribute>
+                </xpath>         
+                
+                <xpath expr="//field[@name='email_from']" position="attributes">
+                	<attribute name="attrs">{'invisible': [('user_id','=',False)]}</attribute>         
+                </xpath>                            
+
+                <!-- <xpath expr="//field[@name='contact_name']" position="attributes">
+                	<attribute name="invisible">1</attribute>        
+                </xpath>
+                
+                <xpath expr="//field[@name='email_from']" position="attributes">
+                	<attribute name="invisible">1</attribute>         
+                </xpath>                                
+
+                <xpath expr="//field[@name='phone']" position="attributes">
+                	<attribute name="invisible">1</attribute>         
+                </xpath>                                
+                                                
+
+                <xpath expr="//field[@name='mobile']" position="attributes">
+                	<attribute name="invisible">1</attribute>         
+                </xpath>                                
+                          			
+
+                <xpath expr="//field[@name='fax']" position="attributes">
+                	<attribute name="invisible">1</attribute>         
+                </xpath>                             					        -->
+					       
+            </field>
+        </record>
+        
+
+<!-- CRM SEARCH VIEW -->
+
+        <record id="view_crm_case_leads_filter_routesms" model="ir.ui.view">
+            <field name="name">crm.lead.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_case_leads_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='unassigned']" position="replace">
+                	
+                    <filter string="Via Webisite" name="unassigned"
+                            domain="[('qms_crm','=', True)]"
+                            help="QMS Query"/>
+                   					                	         
+                </xpath>                                
+
+                <xpath expr="//field[@name='name']" position="after">
+                	<field name="email_from" string="Email" filter_domain="[('email_from', 'ilike', self)]"/>    
+                </xpath> 
+
+            </field>
+        </record>
+
+
+
+        
+<!-- OPPROTUNITY TREE VIEW -->
+        <record id="crm_case_tree_view_oppor_routesms" model="ir.ui.view">
+            <field name="name">crm.lead.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='country_id']" position="after">
+                	<field name="current_note"/>
+                	<!-- <field name="email_from"/>       
+                	<field name="phone" /> -->
+<!--                	<field name="partner_email"/>-->
+                </xpath>                                
+
+            </field>
+        </record>
+
+         
+        
+<!-- OPPROTUNITY FORM VIEW -->        
+
+
+        <record id="crm.crm_case_form_view_oppor_routesms" model="ir.ui.view">
+            <field name="name">crm.lead.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+
+		<xpath expr="//field[@name='user_id']" position="after">
+			<field name="salesperson_alias" invisible="1" />
+		</xpath>
+
+                <xpath expr="//field[@name='street']" position="attributes">
+                	<attribute name="invisible">1</attribute>   
+                </xpath> 
+
+                <xpath expr="//field[@name='street2']" position="attributes">
+                	<attribute name="invisible">1</attribute>   
+                </xpath> 
+                <xpath expr="//field[@name='city']" position="attributes">
+                	<attribute name="invisible">1</attribute>  
+                </xpath> 
+
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                	<attribute name="invisible">1</attribute>
+                </xpath>    
+
+                <xpath expr="//field[@name='zip']" position="attributes">
+                	<attribute name="invisible">1</attribute>  
+                </xpath> 
+
+                <xpath expr="//notebook" position="inside">
+                        <page string="Log Notes">
+                                 <field name="log_note_line"  readonly="0">
+                                         <form string="Add Internal Notes">
+                                                <group>
+                                                    <group>
+                                                        <field name="name" />
+                                                        <field name="date" readonly="0"/>
+                                                    </group>
+                                                </group>
+                                         </form>
+                                         <tree string="Add Internal Notes" editable="bottom">
+                                                        <field name="name" />
+                                                        <field name="date" readonly="0"/>
+                                        </tree>
+                                </field>
+                        </page>
+                </xpath>
+
+                <xpath expr="//button[@name='case_mark_lost']" position="after">
+			<button colspan="2" name="dnd_stage"  string="Do Not Disturb" type="object" icon="STOCK_DIALOG_AUTHENTICATION" class="oe_inline"/>
+                </xpath>
+
+                <xpath expr="//field[@name='email_from']" position="attributes">
+                	<attribute name="invisible">0</attribute>         
+                </xpath>                                
+
+                <xpath expr="//field[@name='phone']" position="attributes">
+                	<attribute name="invisible">0</attribute>         
+                </xpath>     
+
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+			<attribute name="domain">[('customer','=',True),('is_company','=',True)]</attribute>               	
+                	<attribute name="options">{'no_create_edit': False,'no_quick_create':True}</attribute>       
+                </xpath> 
+
+            </field>
+        </record>
+
+<!-- SEARCH VIEW -->
+
+
+
+        <record id="view_routesms_crm_case_opportunities_filter" model="ir.ui.view">
+            <field name="name">CRM - Opportunities Search</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position="after">
+                	<field name="email_from" string="Email" filter_domain="[('email_from', 'ilike', self)]"/>    
+                </xpath>                  	
+
+            </field>
+        </record><!-- SEARCH VIEW -->
+
+
+
+        <record id="view_routesms_crm_case_opportunities_filter" model="ir.ui.view">
+            <field name="name">CRM - Opportunities Search</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position="after">
+                	<field name="email_from" string="Email" filter_domain="[('email_from', 'ilike', self)]"/>    
+                </xpath>                  	
+
+            </field>
+        </record>
+
+
+
+    </data>
+</openerp>
+

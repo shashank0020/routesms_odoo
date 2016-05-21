@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record model="res.groups" id="group_routesms_vertical_business">
+            <field name="name">Vertical Business</field>
+        </record>
+        
+        <record model="res.groups" id="group_routesms_city_code">
+            <field name="name">City Code</field>
+        </record>
+
+        <record model="res.groups" id="group_routesms_293holiday_users_custom">
+            <field name="name">293 Holiday user</field>
+        </record>
+
+        <record model="res.groups" id="group_routesms_293holiday_air">
+            <field name="name">293 Holiday Users AIR Ticket</field>
+        </record>
+        
+        <record model="res.groups" id="group_routesms_293holiday_users">
+            <field name="name">293 Holiday Users Others</field>
+        </record>
+
+        <record model="res.groups" id="group_routesms_activate_invoice_line">
+            <field name="name">Activate Invoice Line</field>
+        </record>        
+
+        <record model="res.groups" id="group_routesms_active_report_banner">
+            <field name="name">Activate Report Baner</field>
+        </record>  
+        
+        <record model="res.groups" id="group_routesms_inactive_report_banner">
+            <field name="name">Deactivate Report Baner</field>
+        </record>          
+
+        <record model="res.groups" id="group_routesms_partner_custom_filter">
+            <field name="name">Partner Filter</field>
+        </record>  
+
+
+
+    </data>
+</openerp>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<openerp>
+    <data>
+        <record id="routesms_qms_api_cron" model="ir.cron">
+            <field name="name">QMS</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model">routesms.api</field>
+            <field name="function">qms_scheduler</field>
+            <field name="args">()</field>
+        </record>
+    </data>
+</openerp>
+
+
+

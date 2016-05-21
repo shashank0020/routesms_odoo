@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_routesms_company_form" model="ir.ui.view">
+            <field name="name">res.company.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='currency_id']" position="after">
+                	<field name="vertical" widget="selection" />
+                	<field name="name_convention"/>
+                	<field name="cin" invisible="1"/>
+                	<field name="pan" invisible="1"/>
+                	<field name="company_registery" invisible="1"/>
+                	
+                </xpath>
+                                
+
+			<xpath expr="//field[@name='custom_footer']" position="after">
+				<field name="baner" widget="image" /> 
+					
+            </xpath>
+                      
+            </field>
+        </record>
+
+    </data>
+</openerp>
+

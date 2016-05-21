@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+<!-- CANCEL INVOIE WIZARD  -->
+
+        <record id="routesms_account_invoice_cancel_view" model="ir.ui.view">
+            <field name="name">account.invoice.cancel.form</field>
+            <field name="model">account.invoice.cancel</field>
+            <field name="inherit_id" ref="account.account_invoice_cancel_view"/>
+            <field name="arch" type="xml">
+            	
+                <xpath expr="//footer" position="before">
+		        	<p class="oe_grey">
+		        		Cancel selected invoices
+		            </p>
+
+                </xpath>
+            </field>
+        </record>
+
+
+            
+            
+        <act_window id="action_account_invoice_cancel"
+            multi="True"
+            key2="client_action_multi" name="Cancel Draft and Unpaid Invoices"
+            res_model="account.invoice.cancel" src_model="account.invoice"
+            view_mode="form" target="new" view_type="form" />   
+
+        <record id="account_invoice_holiday_wizard_view" model="ir.ui.view">
+             <field name="name">Account Holiday wizard</field>
+             <field name="model">account.invoice.holiday.wizard</field>
+             <field name="arch" type="xml">
+                <form string="Holiday Business Verticals">
+                    <separator string="Holiday Business Verticals"/>
+                    <label string="Select Vertical for your business"/>
+                    <field name="holiday_vertical_list" class="oe_inline"/>
+                    <footer>
+                        <button name="submit" string="Submit" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+             </field>
+         </record>
+
+
+<!--  ENDS -->
+
+
+        <record id="action_account_invoice_holiday_wizard_view" model="ir.actions.act_window">
+            <field name="name">Holidy selection</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice.holiday.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account_invoice_holiday_wizard_view"/>
+            <field name="target">new</field>
+            
+        </record>
+
+        <menuitem
+            icon="STOCK_EXECUTE"
+            name="Travel"
+            action="action_account_invoice_holiday_wizard_view"
+            id="menu_account_invoice_holiday_wizard_view"
+            parent="account.menu_finance_receivables"
+            groups="routesms.group_routesms_293holiday_users_custom"/>
+
+
+<!-- Wizard for customer filter -->
+
+        <record id="routesms_partner_filter_wizard_view" model="ir.ui.view">
+             <field name="name">Search Partner</field>
+             <field name="model">partner.custom.filter</field>
+             <field name="arch" type="xml">
+                <form string="Customer Search">
+                    
+                    <p style="color:#AF1173">Odoo login user type is either INDIA or INTERNATIONAL. Kindly contact HR department to preview your partner type</p>
+                    <field name="partner_name" placeholder="Enter Partner Name" class="oe_inline" invisible="1"/>
+                    <field name="domain" placeholder="Enter Domain" class="oe_inline"/>
+                    <field name="email" placeholder="Enter Email" class="oe_inline"/>
+                    <footer>
+                        <button name="submit" string="Submit" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+             </field>
+         </record>
+
+
+
+
+        <record id="action_routesms_partner_filter_wizard_view" model="ir.actions.act_window">
+            <field name="name">Search Partner</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">partner.custom.filter</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="routesms_partner_filter_wizard_view"/>
+            <field name="target">new</field>
+            
+        </record>
+
+        <menuitem
+            icon="STOCK_EXECUTE"
+            name="Customer Search"
+            action="action_routesms_partner_filter_wizard_view"
+            id="menu_routesms_partner_filter_wizard_view"
+            parent="base.menu_sales"/>
+
+<!-- Main menu for 29T report -->            
+		<menuitem id="menu_29T_reporting" name="29T Reporting" parent="account.menu_finance_reports" groups="routesms.group_routesms_293holiday_users_custom"/>
+<!-- ends -->
+
+<!-- MENU FOR CUSTOM REPORTS -->
+<menuitem id="menu_routesms_custom_reporting" name="Custom Reports" parent="account.menu_finance_reports"/>
+
+<!-- ENDS -->
+
+<!-- wizard for 29T pnr report print from wizrad -->
+
+
+        <record id="routesms_pnr_report_wizard_view" model="ir.ui.view">
+             <field name="name">Print PNR Report</field>
+             <field name="model">pnr.report</field>
+             <field name="arch" type="xml">
+                <form string="Print PNR Report">
+                    
+                    <!-- <label string="Customer Search"/> -->
+                    <p style="color:#AF1173">Print PNR REPORT for 29 THREE HOLIDAYS PVT. LTD</p>         
+
+                    <footer>
+                        <button name="print_report" string="Print" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+             </field>
+         </record>
+
+        <record id="action_routesms_pnr_report_wizard_view" model="ir.actions.act_window">
+            <field name="name">Print PNR Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pnr.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="routesms_pnr_report_wizard_view"/>
+            <field name="target">new</field>
+            
+        </record>
+
+        <menuitem
+            icon="STOCK_EXECUTE"
+            name="Print PNR Report"
+            action="action_routesms_pnr_report_wizard_view"
+            id="menu_routesms_pnr_report_wizard_view"
+            groups="routesms.group_routesms_293holiday_users_custom"
+            parent="menu_29T_reporting"/>   
+            
+            <!-- END -->         
+            
+<!-- ORIGIN REPORT -->            
+
+
+        <record id="routesms_origin_report_wizard_view" model="ir.ui.view">
+             <field name="name">Print Source Document Report</field>
+             <field name="model">source.document.report</field>
+             <field name="arch" type="xml">
+                <form string="Print SOURCE DOCUMENT Report">
+                    
+                    <!-- <label string="Customer Search"/> -->
+                    <p style="color:#AF1173">Print Source Document Report for 29 THREE HOLIDAYS PVT. LTD</p>         
+
+                    <footer>
+                        <button name="print_report" string="Print" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+             </field>
+         </record>
+
+        <record id="action_routesms_origin_report_wizard_view" model="ir.actions.act_window">
+            <field name="name">Print SOURCE DOCUMENT Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">source.document.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="routesms_origin_report_wizard_view"/>
+            <field name="target">new</field>
+            
+        </record>
+
+        <menuitem
+            icon="STOCK_EXECUTE"
+            name="Print Source Document Report"
+            action="action_routesms_origin_report_wizard_view"
+            id="menu_routesms_origin_report_wizard_view"
+            groups="routesms.group_routesms_293holiday_users_custom"
+            parent="menu_29T_reporting"/> 
+
+
+<!-- SALE/PURCHASE REPORT -->
+
+        <record id="routesms_sale_purchase_report_wizard_view" model="ir.ui.view">
+             <field name="name">Print Sale Purchase Report</field>
+             <field name="model">sale.purchase.report.wizard</field>
+             <field name="arch" type="xml">
+                <form string="Print Sale Purchase Report">
+                    
+                    <!-- <label string="Customer Search"/> -->
+                    <p style="color:#AF1173">Print Sale Purchase REPORT</p>  
+                    <field name="report_type" placeholder="Select Report Type" class="oe_inline" required="1"/>   
+                    <field name="type" placeholder="Select Type" class="oe_inline" required="1"/>
+                    <field name="date_from" placeholder="Date From" class="oe_inline"/>
+                    <field name="date_to" placeholder="Date To" class="oe_inline"/>
+
+
+                    <footer>
+                        <button name="print_report" string="Print" type="object" class="oe_highlight" context="{'date_from': date_from,'date_to':date_to}"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+             </field>
+         </record>
+
+        <record id="action_sale_purchase_report_wizard_view" model="ir.actions.act_window">
+            <field name="name">Sale Purchase Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.purchase.report.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="routesms_sale_purchase_report_wizard_view"/>
+            <field name="target">new</field>
+            
+        </record>
+
+        <menuitem
+            icon="STOCK_EXECUTE"
+            name="Print Sale Purchase Report"
+            action="action_sale_purchase_report_wizard_view"
+            id="menu_routesms_sale_purchase_report_wizard_view"
+            parent="menu_routesms_custom_reporting"
+            /> 
+
+
+
+<!-- ENDS -->
+            
+    </data>
+</openerp>

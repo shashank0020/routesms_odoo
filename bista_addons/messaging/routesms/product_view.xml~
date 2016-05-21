@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_routesms_account_customer_invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+            	
+                <xpath expr="//field[@name='partner_id']" position="after">
+                	<field name="contact_id" widget="selection" attrs="{'invisible': [('partner_id','=',False)]}" domain="[('parent_id','in',[partner_id])]"/> 
+                </xpath>
+
+                <xpath expr="//field[@name='user_id']" position="after">
+                	<field name="employee_id" invisible="1"/>
+                </xpath>
+                                
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                	<attribute name="on_change">account_onchange_user(user_id)</attribute>         
+                </xpath>        
+                
+                <xpath expr="//field[@name='product_id']" position="after">
+                	<!-- <field name="test" attrs="{'invisible': [('parent.company_id','!=',3)]}"/> -->
+                		<!-- attrs="{'invisible': [('parent.company_id','!=',3)]}"/> -->
+                	
+                </xpath>                                         
+                                
+            </field>
+        </record>
+
+
+
+        <record id="view_routesms_account_supplier_invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+            	
+                <xpath expr="//field[@name='partner_id']" position="after">
+                	<field name="contact_id" widget="selection" attrs="{'invisible': [('partner_id','=',False)]}" domain="[('parent_id','in',[partner_id])]"/> 
+                </xpath>
+
+                <xpath expr="//field[@name='user_id']" position="after">
+                	<field name="employee_id"/>
+                </xpath>
+                                
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                	<attribute name="on_change">account_onchange_user(user_id)</attribute>         
+                </xpath>                                 
+                                
+            </field>
+        </record>
+
+        <record id="routesms_account_voucher_receipt_form" model="ir.ui.view">
+            <field name="name">account.voucher.inherit</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_receipt_form"/>
+            <field name="arch" type="xml">
+            	
+                <xpath expr="//field[@name='partner_id']" position="after">
+                	<field name="contact_id" widget="selection" attrs="{'invisible': [('partner_id','=',False)]}" domain="[('parent_id','in',[partner_id])]"/> 
+                </xpath>
+
+
+                <xpath expr="//field[@name='company_id']" position="after">
+                	<field name="user_id" on_change="account_onchange_user(user_id)"/>
+                	<field name="employee_id"/>
+                </xpath>
+                
+             </field>
+        </record>        
+
+
+
+    </data>
+</openerp>
+
+

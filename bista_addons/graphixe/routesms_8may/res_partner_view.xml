@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+        <record id="view_partner_tree_routesms" model="ir.ui.view">
+            <field name="name">res.partner.tree.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+            	
+                <xpath expr="//field[@name='phone']" position="attributes">
+                	<attribute name="invisible">1</attribute>         
+                </xpath> 
+                
+                <xpath expr="//field[@name='email']" position="attributes">
+                	<attribute name="invisible">1</attribute>         
+                </xpath>                          	    	
+
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                	<attribute name="invisible">0</attribute>         
+                </xpath>                          	    	
+
+            	<xpath expr="//field[@name='display_name']" position="after">
+                    <field name="crm_lead_state"/>
+                </xpath>
+ 
+
+            </field>
+        </record>    	
+    	
+        <record id="view_partner_form_routesms" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+            	<xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="partner_sequence" nolabel="1" placeholder="Customer ID" readonly="1" />
+                </xpath>
+                
+            	<xpath expr="//field[@name='active']" position="after">
+                
+                    <field name="prepaid" />
+                    <field name="postpaid" />
+                </xpath>                
+				<xpath expr="//field[@name='website']" position="after">
+					<field name="vertical" widget="selection"/>
+					<field name="partner_type" invisible="1"/>
+					<field name="routesms_cust_id"/>
+					<field name="routesms_remark"/>
+					
+              	</xpath>  
+
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                	<attribute name="required">1</attribute>         
+                </xpath>               	
+              	
+				<!-- <xpath expr="//field[@name='email']" position="after">
+					<field name="email_1" placeholder="Commercial"/>
+					<field name="email_2" placeholder="Commercial" attrs="{'invisible':[('flag', '=',True)]}" />
+					<field name="email_3" placeholder="Help Desk" attrs="{'invisible':[('flag', '=',True)]}" />
+					<field name="email_4" placeholder="Help Desk" attrs="{'invisible':[('flag', '=',True)]}" />
+					<field name="flag_function"/>					
+              	</xpath>              	 -->            </field>
+        </record>
+
+
+
+        <record id="view_res_partner_filter_routesms" model="ir.ui.view">
+            <field name="name">res.partner.select.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position="attributes">
+                	<attribute name="filter_domain">['|','|',('display_name','=',self),('ref','=',self),('email','ilike',self)]</attribute>         
+                </xpath> 
+
+            </field>
+        </record>
+
+        <record id="view_partner_property_form_routesms" model="ir.ui.view">
+            <field name="name">res.partner.taxes.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='property_account_position']" position="after">
+                	
+                	<field name="tan" placeholder="10 digit TAN number"/>
+                	<field name="pan" placeholder="10 digit PAN numbe"/>
+                	<field name="company_registery" />
+                	
+                </xpath>
+            </field>
+        </record>
+
+
+            
+        <record id="view_country_group_form_routesms" model="ir.ui.view">
+            <field name="name">res.country.group.form.form</field>
+            <field name="model">res.country.group</field>
+            <field name="inherit_id" ref="base.view_country_group_form"/>
+            <field name="arch" type="xml">
+            	
+                <xpath expr="//field[@name='country_ids']" position="replace">
+                    <field name="country_ids" />
+                    
+                </xpath>            	            	
+            </field>
+        </record>
+    </data>
+</openerp>
+

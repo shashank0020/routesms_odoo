@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_check_routesms" inherit_id="account_check_writing.report_check">
+        <xpath expr="//div[@class='page']" position="replace">
+            <div class="page">
+					<address t-field="o.partner_id"
+                  			  t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true, "no_tag_br": true}' />
+
+                <span t-esc="formatLang(o.date , date=True)"/><br/>
+                <span t-field="o.amount"
+                    t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/><br/>
+                <span t-esc="fill_stars(o.amount_in_word)"/>
+
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                        	 <th>Inv No.</th>
+                        	 <th>Payment Method</th>
+                            <th>Due Date</th>
+                            <th>Description</th>
+                            <th>Original Amount</th>
+                            <th>Open Balance</th>
+                            <th>Discount</th>
+                            <th>Payment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="o.line_dr_ids" t-as="l">
+	
+
+                            <td class="text-right"><span t-esc="o.name"/></td>
+  
+                        </tr>
+                    </tbody>
+                </table>           
+                
+                
+                
+
+                  			              
+	</div>                
+
+
+	</xpath>
+</template>
+</data>
+</openerp>

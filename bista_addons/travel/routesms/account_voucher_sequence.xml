@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="seq_account_voucher" model="ir.sequence">
+            <field name="name">Voucher</field>
+            <field name="code">account.voucher</field>
+            <field name="prefix"></field>
+            <field name="padding">0</field>
+            <field name="number_next_actual">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</openerp>

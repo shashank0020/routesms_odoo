@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<!-- Tree view starts -->
+
+        <record id="view_vertical_business_tree" model="ir.ui.view">
+            <field name="name">vertical.business.tree</field>
+            <field name="model">vertical.business</field>
+            <field name="arch" type="xml">
+                <tree string="Verticals">
+                    <field name="name"/>
+                    <field name="code" string="Order Number"/>
+                    <field name="active"/>
+                    <field name="company_id" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+		<!-- Tree view end -->
+		
+		
+		<!-- Form view starts -->
+        <record id="view_vertical_business_form" model="ir.ui.view">
+            <field name="name">vertical.business.form</field>
+            <field name="model">vertical.business</field>
+            <field name="arch" type="xml">
+                <form string="Vertical">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" class="oe_inline"/>
+                            <field name="code" class="oe_inline"/>
+                            <field name="active" class="oe_inline"/>
+                            <field name="company_id" class="oe_inline" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+		<!-- Form view ends -->
+
+		<!-- Search view starts -->
+        <record id="view_vertical_business_filter" model="ir.ui.view">
+            <field name="name">vertical.business.list.select</field>
+            <field name="model">vertical.business</field>
+            <field name="arch" type="xml">
+                <search string="Search Verticals">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <!-- <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+                    </group> -->
+               </search>
+            </field>
+        </record>
+
+		<!-- Search view ends -->
+		
+		<!-- Action view starts -->
+        <record id="action_vertical_business" model="ir.actions.act_window">
+            <field name="name">Verticals</field>
+            <field name="res_model">vertical.business</field>
+            <field name='view_type'>form</field>
+            <field name='view_mode'>tree,form</field>
+            
+            <!-- <field name="search_view_id" ref="view_vertical_business_filter"/> -->
+            
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create Verticals for your Buisness.
+                </p>
+            </field>
+        </record>
+        <!-- Action view ends -->
+        
+        <!-- Menuitems starts -->
+        
+		<menuitem id="main_menu_vertical_business" name="Verticals" parent="base.menu_administration" sequence="8"/>
+        <menuitem action="action_vertical_business" name="Verticals" id="menu_vertical_business" parent="main_menu_vertical_business" sequence="1"/>
+
+		<!-- Menuitems ends -->
+
+    </data>
+</openerp>

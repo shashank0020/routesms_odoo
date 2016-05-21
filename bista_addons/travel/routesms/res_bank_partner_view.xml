@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="res_partner_bank_form_routesms" model="ir.ui.view">
+            <field name="name">res.partner.bank.inherit</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='bank_bic']" position="after">
+                	<field name="iban" />
+                </xpath>
+
+                <xpath expr="//field[@name='bank_name']" position="after">
+                	<field name="bank_name_invoice"/>
+                </xpath>                
+
+
+					       
+            </field>
+        </record>
+
+    </data>
+</openerp>
+

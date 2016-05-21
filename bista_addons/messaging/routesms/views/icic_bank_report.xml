@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+<openerp>
+<data>
+
+
+
+	
+<template id="report_bank_icici" >
+    <t t-call="routesms.routesms_bank_layout">
+        <t t-foreach="docs" t-as="o">
+           
+            <div class="page" style='font-size:small'>
+            	<br></br>
+            	<br></br>
+					
+                    <div style="position: fixed;height:0px;top: -10px;right: 60px">
+						<span t-esc="formatLang(o.date , date=True)"/><br/>                    	
+                    </div>
+  
+                
+                <div style="position: fixed;height:0px;top: 0px;left: 40px">
+					<span t-esc="get_partner(o.partner_id)"/>
+		            <br/>                
+                </div>
+	                <br/> 
+	                <br/>
+                
+                <div >
+	                <p>f</p>
+	                <br/> 
+	                <br/> 
+	                <br/> 
+                </div>
+                
+                <div style="position: fixed;height:0px;top: 160px;right: 186px">
+		                <span t-field="o.amount"
+		                    t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/><br/>
+				</div>		                                 
+            </div>
+        </t>
+    </t>
+</template>
+</data>
+</openerp> -->
+
+
+
+
+
+<openerp>
+<data>
+  <template id="report_bank_icici1">
+      <t t-call="routesms.routesms_icic_bank_layout">
+          <div class="page" style='font-size:larger'>
+          	   
+              <div class="row">
+              	  
+                  <div class="col-xs-6">
+						<p>To</p>
+                        <br></br>
+                        <p>The Branch Manager</p>
+                        <br></br>
+                        <p>___________________Branch</p>
+                  </div>
+                  
+                  <div class="col-xs-5 col-xs-offset-1">
+                	<b>Date </b><span t-field="o.date"/><br/>
+                    <b>PAN No. </b><span t-field="o.partner_id.pan"/>
+
+                    <table class="table table-bordered">
+                  
+                      <tbody>
+                        <tr>
+                          <td>* Cash Remittance permission up to ₹ 49,999</td>
+                  
+                        </tr>
+                        <tr>
+                          <td>* Quote PAN for an amount of ₹ 50,000 &amp; above</td>
+                  
+                        </tr>
+                        <tr>
+                          <td>* KYC to be given for cash payment above ₹ 5000</td>
+                  
+                        </tr>
+
+                        <tr>
+                          <td>* To be filled by the Applicant in BLOCK LETTERS</td>
+                  
+                        </tr>                        
+                      </tbody>
+                    </table>
+
+                  </div>  
+                  
+                  <p>Dear Sir<br/>    
+                  Please remit through NEFT a sum of ₹<u><span t-field="o.amount"/></u>(Rupees in words)<u><span t-esc="get_amount_in_words(o.amount)"/></u><br/> 
+                  as per details given below</p>
+                  <span style="white-space:pre;">[]  Cash																		[]  Cheque																		[]  Debit my/curr account </span>
+                  
+                  <p>In case of cash,please fill in the pay-in-slip<br/>
+                  I understand that this facility is available only at select locations and banks covered
+                  under Electronic Funds Transfer Facility offered by RBI.
+                  </p>
+                  
+                  <p style="text-align: center;background-color: #010201;color: #F9F9F9">DETAILS OF APPLICANT(REMITTER)</p>
+				  <!-- <table class="table table-bordered">
+					  
+					      <tbody>
+					    <tr>
+					      <td>Account Number: <span t-field="o.partner_bank_id.acc_number"/></td>
+					  
+					    </tr>
+					    <tr>
+					      <td>Cheque Number: <span t-field="o.cheque_number"/></td>
+					  
+					        </tr>
+					    <tr>
+					      <td>Remitter's Name: <span t-field="o.partner_bank_id.owner_name"/></td>
+					    </tr>
+					
+					    <tr>
+					      <td>Address: <span t-field="o.partner_bank_id.street"/>
+					      	  <span t-field="o.partner_bank_id.zip"/>
+						      <span t-field="o.partner_bank_id.city"/>
+						      <span t-field="o.partner_bank_id.state_id.name"/>
+						      <span t-field="o.partner_bank_id.country_id.name"/>
+
+						  </td>
+					  
+					    </tr>   
+
+					
+					    <tr>
+					      <td>Mobile: <span t-field="o.partner_bank_id.partner_id.mobile"/></td>
+					  
+					    </tr> 
+					    					                         
+					  </tbody>
+				  </table>   -->
+				  
+				  <p><b>Account Number: </b><span t-field="o.partner_bank_id.acc_number"/><br/>
+				  	<b>Cheque Number: </b><span t-field="o.cheque_number"/><br/>
+				  	<b>Cheque Date: </b><span t-field="o.date"/><br/>
+				  	<b>Remitter's Name: </b><span t-field="o.partner_bank_id.owner_name"/><br/>
+				  	<b>Address: </b><span t-field="o.partner_bank_id.street"/>
+					      	  <span t-field="o.partner_bank_id.zip"/>
+						      <span t-field="o.partner_bank_id.city"/>
+						      <span t-field="o.partner_bank_id.state_id.name"/>
+						      <span t-field="o.partner_bank_id.country_id.name"/><br/>
+				  	<b>Mobile: </b><span t-field="o.partner_bank_id.partner_id.mobile"/>
+				  	
+				  </p>
+
+                  <p style="text-align: center;background-color: #010201;color: #F9F9F9">DETAILS OF BENIFICIARY</p>
+				  <!-- <table class="table table-bordered">
+					  
+					      <tbody>
+					    <tr>
+					      <td>Benificiary's Name: <span t-field="o.partner_id.partner_alias"/></td>
+					  
+					    </tr>
+					    <tr>
+					      <td>Account Number: <span t-field="o.partner_bank_id.acc_number"/></td>
+					  
+					    </tr>
+					    
+					    <tr>
+					      <td>Bank Name: <span t-field="o.partner_bank_id.bank.name"/></td>
+					    </tr>
+
+					    <tr>
+					      <td>IFSC Code (11 digit): <span t-field="o.partner_bank_id.bank_bic"/></td>
+					    </tr>					    
+					
+					    <tr>
+					      <td>Address: <span t-field="o.partner_bank_id.bank.street"/>
+					      	  <span t-field="o.partner_bank_id.bank.zip"/>
+						      <span t-field="o.partner_bank_id.bank.city"/>
+						      <span t-field="o.partner_bank_id.bank.state.name"/>
+						      <span t-field="o.partner_bank_id.bank.country.name"/>
+
+						  </td>
+					    </tr>   
+					
+					    <tr>
+					      <td>Mention Account Number: <span t-field="o.partner_bank_id.acc_number"/></td>
+					  
+					    </tr>
+
+					    <tr>
+					      <td>Remarks (If any): </td>
+					  
+					    </tr>
+					    					    				                         
+					  </tbody>
+				  </table> 	 -->
+				  
+				  <p>
+				  	<b>Benificiary's Name: </b><span t-field="o.partner_id.partner_alias"/><br/>
+				  	<b>Account Number: </b><span t-field="o.partner_bank_id.acc_number"/><br/>
+				  	<b>Bank Name: </b><span t-field="o.partner_bank_id.bank.name"/><br/>
+				  	<b>IFSC Code (11 digit): </b><span t-field="o.partner_bank_id.bank_bic"/><br/>
+					<b>Address: </b><span t-field="o.partner_bank_id.bank.street"/>
+					      	  <span t-field="o.partner_bank_id.bank.zip"/>
+						      <span t-field="o.partner_bank_id.bank.city"/>
+						      <span t-field="o.partner_bank_id.bank.state.name"/>
+						      <span t-field="o.partner_bank_id.bank.country.name"/><br/>
+					<b>Mention Account Number: </b><span t-field="o.partner_bank_id.acc_number"/><br/>	
+					<b>Remarks (If any): </b>		  	
+				  	
+				  	
+				  </p>
+
+				  <p>
+						
+					____________________________________________________________________________________________________________________________________________________________________________________________________________________
+				  </p>				                         
+				  
+				  <p>This transfer required for single transaction<br/>
+                  The fund transfer will be governed by the terms and conditions given on our website www.icicibank.com<br/>
+                  I/We authorize ICIC bank to recover charges as may be applicable by debiting my account as
+                  mentioned above<br/>
+                  I/We understand that as per RBI circular dated October 14,2010 transfer of fund through 
+                  electronic mode will be executed only on the basis<br/>
+                  of the account number of the benificiary provided while initiating the transaction name
+                  will not be considered as a criteria for providing credit.
+                  </p>	                  
+                  
+                  <p>Sincerely</p>
+                  
+                  <p>_____________________________________<br/>
+                  	 Signature(s) as per Mode of Operation<br/>
+                  	 - - - - - - - - - - - - - - - - - - - - - -
+                  	 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                  	 - - - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - - 
+                  	 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - - 
+				  </p>
+				  
+				  <p style="text-align: center">Customer Acknowledgment</p>
+				  <p>Date  <u><span t-field="o.date"/></u><br/>
+				  We acknowledge receipt on NEFT instruction(s).Reference no.<br/>
+				  Branch <u><span t-field="o.partner_bank_id.bank.name"/></u> Name and Signature
+				  of Bank Official _________________________________
+				  	</p>                 	 
+                  	 
+                  	 
+                  
+                  
+         	
+              </div>
+          </div>
+      </t>
+  </template>
+
+<template id="report_bank_icici">
+    <t t-call="report.html_container">
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'routesms.report_bank_icici1')"/>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>
+
+
+

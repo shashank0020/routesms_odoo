@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Sequences for res.partner -->
+        <!-- <record id="seq_type_sale_order" model="ir.sequence.type">
+            <field name="name">Partner</field>
+            <field name="code">res.partner</field>
+        </record> -->
+     <!-- CUSTOMER INVOICES -->   
+
+        <record id="seq_account_invoice_air" model="ir.sequence">
+            <field name="name">AIR TICKETING</field>
+            <field name="code"></field>
+            <field name="prefix">AIR/%(year)s/</field>
+            <field name="padding">4	</field>
+            <field name="number_next_actual">1</field>
+            <field name="company_id" eval="3"/>
+        </record>
+
+        <record id="seq_account_invoice_tour" model="ir.sequence">
+            <field name="name">TOURS PACKAGES</field>
+            <field name="code"></field>
+            <field name="prefix">TOU/%(year)s/</field>
+            <field name="padding">4	</field>
+            <field name="number_next_actual">1</field>
+            <field name="company_id" eval="3"/>
+        </record>
+
+
+        <record id="seq_account_invoice_hotel" model="ir.sequence">
+            <field name="name">HOTEL BOOKING</field>
+            <field name="code"></field>
+            <field name="prefix">HOT/%(year)s/</field>
+            <field name="padding">4	</field>
+            <field name="number_next_actual">1</field>
+            <field name="company_id" eval="3"/>
+        </record>
+
+
+        <record id="seq_account_invoice_visa" model="ir.sequence">
+            <field name="name">VISA SERVICE</field>
+            <field name="code"></field>
+            <field name="prefix">VISA/%(year)s/</field>
+            <field name="padding">4	</field>
+            <field name="number_next_actual">1</field>
+            <field name="company_id" eval="3"/>
+        </record>
+
+
+        <record id="seq_account_invoice_rent" model="ir.sequence">
+            <field name="name">RENT A CAB SERVICE</field>
+            <field name="code"></field>
+            <field name="prefix">RAC/%(year)s/</field>
+            <field name="padding">4	</field>
+            <field name="number_next_actual">1</field>
+            <field name="company_id" eval="3"/>
+        </record>
+
+
+        <record id="seq_account_invoice_ins" model="ir.sequence">
+            <field name="name">INSURANCE SERVICE</field>
+            <field name="code"></field>
+            <field name="prefix">INS/%(year)s/</field>
+            <field name="padding">4	</field>
+            <field name="number_next_actual">1</field>
+            <field name="company_id" eval="3"/>
+        </record>
+
+<!-- SUPPLIER INVOICES -->
+
+
+        <record id="seq_account_invoice_air_supplier" model="ir.sequence">
+            <field name="name">AIR TICKETING (SUP)</field>
+            <field name="code"></field>
+            <field name="prefix">AIR/%(year)s/</field>
+            <field name="padding">4	</field>
+            <field name="number_next_actual">1</field>
+            <field name="company_id" eval="3"/>
+        </record>
+
+        <record id="seq_account_invoice_tour_supplier" model="ir.sequence">
+            <field name="name">TOURS PACKAGES (SUP)</field>
+            <field name="code"></field>
+            <field name="prefix">TOU/%(year)s/</field>
+            <field name="padding">4	</field>
+            <field name="number_next_actual">1</field>
+            <field name="company_id" eval="3"/>
+        </record>
+
+
+        <record id="seq_account_invoice_hotel_supplier" model="ir.sequence">
+            <field name="name">HOTEL BOOKING (SUP)</field>
+            <field name="code"></field>
+            <field name="prefix">HOT/%(year)s/</field>
+            <field name="padding">4	</field>
+            <field name="number_next_actual">1</field>
+            <field name="company_id" eval="3"/>
+        </record>
+
+
+        <record id="seq_account_invoice_visa_supplier" model="ir.sequence">
+            <field name="name">VISA SERVICE (SUP)</field>
+            <field name="code"></field>
+            <field name="prefix">VISA/%(year)s/</field>
+            <field name="padding">4	</field>
+            <field name="number_next_actual">1</field>
+            <field name="company_id" eval="3"/>
+        </record>
+
+
+        <record id="seq_account_invoice_rent_supplier" model="ir.sequence">
+            <field name="name">RENT A CAB SERVICE (SUP)</field>
+            <field name="code"></field>
+            <field name="prefix">RAC/%(year)s/</field>
+            <field name="padding">4	</field>
+            <field name="number_next_actual">1</field>
+            <field name="company_id" eval="3"/>
+        </record>
+
+
+        <record id="seq_account_invoice_ins_supplier" model="ir.sequence">
+            <field name="name">INSURANCE SERVICE (SUP)</field>
+            <field name="code"></field>
+            <field name="prefix">INS/%(year)s/</field>
+            <field name="padding">4	</field>
+            <field name="number_next_actual">1</field>
+            <field name="company_id" eval="3"/>
+        </record>
+
+
+
+
+
+    </data>
+</openerp>

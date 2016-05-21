@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	
+
+	
+<template id="report_sale_purchase" >
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            
+            <div class="page">
+            	<div>
+            		<h1 style="text-align:center"><span t-esc="check_report_type(data)"/></h1>
+            		
+            		
+            	</div>
+            		<!-- <h1>Sale/Purchase Report</h1> -->
+            		<!-- <div>
+            			<span t-esc="insert_lines(o)"/>
+            		</div> -->
+
+                <table class="table table-condensed">
+                    <thead>
+                    	<th>Invoice Number</th>
+ 						<th>Partner</th>
+ 						<th>Country</th>
+ 						<th>Invoice Date</th>
+ 						<th>Subtotal</th>
+ 						<th>Tax Amount</th>
+ 						<th>Total Amount</th>
+ 						<th></th>
+                    </thead>
+                    <tbody>
+						<t t-foreach="get_line(data)" t-as="l">                    	
+							<tr>	
+	                            <td class="text-left"><span t-esc="l.number"/></td>
+							    <td class="text-left"><span t-esc="l.partner_id.name"/></td>
+								<td class="text-left" ><span t-esc="l.partner_id.country_id.name"/></td>
+								<td class="text-left"><span t-esc="l.date_invoice"/></td>
+								<td class="text-left"><span t-esc="l.amount_untaxed"/></td>
+								<td class="text-left"><span t-esc="l.amount_tax"/></td>
+								<td class="text-left"><span t-esc="l.amount_total"/></td>
+	                        </tr>
+	                    </t>
+                    </tbody>
+                </table>   
+                
+            <div class="row" style="text-align: right">
+            	
+                <div class="col-xs-9 col-xs-offset-1">
+                    <table class="table table-bordered" >
+                        <thead>
+                            <tr >
+                                <th>Subtotal</th>
+                                <th >Tax Amount</th>
+                                <th >Total Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr >
+                            	<td><span t-esc="get_sum_subtotal(data)['amount_untaxed']"/></td>
+                            	<td><span t-esc="get_sum_subtotal(data)['amount_tax']"/></td>
+                            	<td><span t-esc="get_sum_subtotal(data)['amount_total']"/></td>
+                            	
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                                            
+                </div>     
+           </div>            
+                
+                
+                        
+			</div> 				                
+		</t>	                
+	</t>                
+
+
+</template>
+</data>
+</openerp>

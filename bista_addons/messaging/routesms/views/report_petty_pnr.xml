@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	
+
+	
+<template id="report_pnr" >
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            
+            <div class="page">
+            		<h1>Air Ticket(Domestic &amp; International)Profit Report</h1>
+            		<!-- <div>
+            			<span t-esc="insert_lines(o)"/>
+            		</div> -->
+
+
+                <table class="table table-condensed">
+                    <thead>
+ 						<th>Supplier</th>
+ 						<th>Invoice Date</th>
+ 						<th>Product</th>
+ 						<th>Passenger Name</th>
+ 						<th>Reference</th>
+ 						<th>PNR</th>
+ 						<th>Amount</th>
+ 						<th>Customer Name</th>
+ 						<th>Tax Amount</th>
+ 						<th>Subtotal</th>
+ 						<th>Profit</th> 						
+ 						
+                    </thead>
+                    <tbody>
+						<t t-foreach="get_line()" t-as="l">                    	
+							<tr>	
+						
+	                            <td class="text-left"><span t-esc="l.supplier"/></td>
+							    <td class="text-left"><span t-esc="l.date_invoice"/></td>
+								<td class="text-left" ><span t-esc="l.supplier_product_line"/></td>
+								<td class="text-left"><span t-esc="l.supplier_passenger_name"/></td>
+								<td class="text-left"><span t-esc="l.supplier_reference"/></td>
+								<td class="text-left"><span t-esc="l.supplier_pnr"/></td>
+								<td class="text-left"><span t-esc="l.supplier_amount"/></td>
+								<td class="text-left"><span t-esc="l.customer"/></td>
+								<td class="text-left"><span t-esc="l.tax_amount"/></td>
+								<td class="text-left"><span t-esc="l.customer_subtotal"/></td>
+								<td class="text-left"><span t-esc="l.profit"/></td>								
+  
+	                        </tr>
+	                    </t>
+                    </tbody>
+                </table>           
+                
+			</div> 				                
+		</t>	                
+	</t>                
+
+
+</template>
+</data>
+</openerp>
