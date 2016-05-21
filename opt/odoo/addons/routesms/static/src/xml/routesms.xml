@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="InstructionPage">
+        <div>
+        	<img src='/routesms/static/src/img/Auction-8.jpg' width="920" height="420" /> 
+        	<h1 class="partner_auction_header">Welcome to our Online Auction.</h1>
+			<div class="partner_auction_para">        	
+	        	<p  >We are pleased to announce our enhanced services of conducting timed online auctions for partners.</p>
+	        	<br></br>
+	        	<pre >What is a timed auction?
+	A timed auction is an internet only bidding system, where all items are partners/customers with 
+	detailed descriptions. Bidders bid online for items of interest to them.
+	The auction lasts for 5 days, and auctioneer(s) can regularly check on the status of their bids.
+	At the conclusion of the bid, winning bidders are automatically contacted by <i>accounts department</i>
+	and notified via email after swapping partner to winner bidders. 
+	        	</pre>
+
+	        	<pre >How does it work?
+	STEP 1 :
+	* There will be total 8phases where 500 partners will be released for auction every week.
+	* To initiate go to Sale-> Bid On Partners -> Partner Auction
+	* Choose the partners/customers who would like to bid
+	* Every phase will be timed out in 5days.
+	* There is no limit on bid, you can bid as many partners as per interest
+	* More than 1 user can bid on same partner.
+	
+	        	</pre>	        	
+	        	<img src='/routesms/static/src/img/partner aution list.png' class="partner_auction_image" />
+	        	
+	        	<pre>
+	STEP 2 :
+	* Find partner from list and hit bid icon to claim the item
+	* Hint: use search bar to find partners
+	        	</pre>
+	        	<img src='/routesms/static/src/img/cliam_partner_1.png' class="partner_auction_image" />
+
+
+	        	<pre>
+	STEP 3 :
+	* As you can see "Lester" is the 1st bidder of "3Gmotion".
+	* Request status will be pending and more business managers can bid on "3Gmotion"
+	
+	        	</pre>
+	        	<img src='/routesms/static/src/img/cliam_requested_1.png' class="partner_auction_image" />
+
+	        	<pre>
+	STEP 4 :
+	* Other business manager can also claim  "3Gmotion" which is already bidded by "Lester"
+	* Multiple business manager can bid on same partner
+	
+	
+	        	</pre>
+	        	<img src='/routesms/static/src/img/cliam_partner_2.png' class="partner_auction_image" />	        	
+
+
+	        	<pre>
+	STEP 5 :
+	* Now you can see "3Gmotion" bidded by 2 business manager
+	* Request to claim status is pending and all requests has been pushed to accounts department for approval
+	
+	
+	        	</pre>
+	        	<img src='/routesms/static/src/img/cliam_requested_2.png' class="partner_auction_image" />
+	        	
+	        	<pre>	        	
+
+	STEP 6 :
+	* Account user can track the bidded items
+	* Winner of auction per item will be decided internally.Sales team and accounts team has to cordinate 
+	internally to decide the winner
+	* Account user has to follow Odoo BM swapping process to transfer partner to winner's account
+	
+	        	</pre>
+	        	<img src='/routesms/static/src/img/check_bid_request.png' class="partner_auction_image" />	        	
+
+			<h3>Contact Us For Queries:</h3>
+			<h4>
+				Email:shashank.verma@bistacloud.com<br></br>
+				Skype:bista_shashank<br></br>
+				Ext:696
+			</h4>	      	
+	       </div>
+		<img src='/routesms/static/src/img/goodluck.jpg' class="partner_auction_image" />
+        </div>
+    </t>
+</templates>

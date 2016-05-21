@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<!-- MANAGE SUBROUTE -->
+
+	<!-- TREE VIEW STARTS -->
+		<record id="view_routesms_subroute_tree" model="ir.ui.view">
+			<field name="name">subroute.tree</field>
+			<field name="model">subroute</field>
+			<field name="arch" type="xml">
+				<tree string="Subroute"  >
+					<field name="name" />
+					<field name="route_type" />
+					<field name="routename" />
+					<field name="local_price" />
+					<field name="username" />
+					<field name="server" />
+				</tree>
+			</field>
+		</record>	
+	<!-- TREE VIEW ENDS -->
+	
+	
+	<!-- FORM VIEW STARTS -->
+		<record id="view_routesms_subroute_form" model="ir.ui.view">
+			<field name="name">subroute.form</field>
+			<field name="model">subroute</field>
+			<field name="arch" type="xml">
+				<form string="Subroute" create="false" >
+					<sheet>
+
+							<group string="Subroute Details">
+								<field name="name" readonly="1" />
+								<field name="route_type" invisible="1"/>
+								<field name="routename"  invisible="1"/>
+								<field name="defaultroute" invisible="1" />
+								<field name="local_price" invisible="1" />
+								<field name="username"  invisible="1"/>
+								<field name="server"  invisible="1"/>
+								<field name="res_partner_add_user_id" invisible="1" />
+								<field name="confirm" invisible="1"  />
+							</group>
+							
+							<group string="Promotional Subroute">
+	                            <field name="subroute_line_promotional"  readonly="0">
+	                                <form string="Promotional Subroute">
+	                                    <group>
+	                                        <group>
+												<field name="routename" required="1" attrs="{'readonly': [('status','!=','pending')]}"/>
+												<field name="defaultroute" invisible="1"/>
+												<field name="route_type" invisible="1" />
+												<field name="local_price" required="1" />
+												<field name="username" readonly="1" />
+												<field name="server"  readonly="1"/>
+												<field name="status" readonly="1"  />
+												<field name="mode" readonly="1"  />
+												
+	                                        </group>
+	                                    </group>
+	
+	                                </form>
+	                                <tree string="Promotional Subroute" editable="bottom" colors="red:status=='pending';green:status=='approved';grey:status=='rejected' " >
+												<field name="routename" required="1" attrs="{'readonly': [('status','!=','pending')]}"/>
+												<field name="defaultroute" invisible="1"/>
+												<field name="route_type" invisible="1" />
+												<field name="local_price" required="1" />
+												<field name="username" readonly="1" />
+												<field name="server"  readonly="1"/>
+												<field name="status" readonly="1"  />
+												<field name="mode" readonly="1"  />
+												
+	                                </tree>
+	                            </field>
+							</group>
+
+							<group string="Transcational Subroute">
+	                            <field name="subroute_line_transactional"  readonly="0">
+	                                <form string="Transactional Subroute">
+	                                    <group>
+	                                        <group>
+												<field name="routename" required="1" attrs="{'readonly': [('status','!=','pending')]}"/>
+												<field name="defaultroute" invisible="1"/>
+												<field name="route_type" invisible="1" />
+												<field name="local_price" required="1" />
+												<field name="username" readonly="1" />
+												<field name="server"  readonly="1"/>
+												<field name="status" readonly="1"  />
+												<field name="mode" readonly="1"  />
+												
+	                                        </group>
+	                                    </group>
+	
+	                                </form>
+	                                <tree string="Transactional Subroute" editable="bottom" colors="red:status=='pending';green:status=='approved';grey:status=='rejected' " >
+	                                		
+												<field name="routename" required="1" attrs="{'readonly': [('status','!=','pending')]}"/>
+												<field name="defaultroute" invisible="1"/>
+												<field name="route_type" invisible="1" />
+												<field name="local_price" required="1" />
+												<field name="username" readonly="1" />
+												<field name="server"  readonly="1"/>
+												<field name="status" readonly="1"  />
+												<field name="mode" readonly="1"  />
+												
+	                                </tree>
+	                            </field>
+							</group>
+							
+					</sheet>
+				</form>
+			</field>
+		</record>	
+	
+	<!-- FORM VIEW ENDS -->
+	
+	<!-- ACTION WINDOW STARTS -->
+		<record id="action_routesms_subroute" model="ir.actions.act_window">
+			<field name="name">Subroute</field>
+			<field name="res_model">subroute</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form</field>
+			<field name="view_id" ref="view_routesms_subroute_tree"/>
+				
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">No Record Found .</p>
+			</field>
+		</record>	
+	
+	
+	<!-- ACTION WINDOW ENDS-->
+
+        <record id="view_partner_tree_routesms" model="ir.ui.view">
+            <field name="name">res.partner.tree.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+            	
+
+                <xpath expr="//tree[@string='Contacts']" position="attributes">
+                	<attribute name="create">false</attribute>         
+                </xpath> 
+
+                <xpath expr="//field[@name='phone']" position="attributes">
+                	<attribute name="invisible">1</attribute>         
+                </xpath> 
+                
+                <xpath expr="//field[@name='email']" position="attributes">
+                	<attribute name="invisible">1</attribute>         
+                </xpath>                          	    	
+
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                	<attribute name="invisible">0</attribute>         
+                </xpath>                          	    	
+
+            	<xpath expr="//field[@name='display_name']" position="after">
+                    <field name="crm_lead_state"/>
+                    <field name="partner_sequence"/>
+                    
+                </xpath>
+ 
+
+            </field>
+        </record>    	
+    	
+        <record id="view_partner_form_routesms" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+
+            	<xpath expr="//field[@name='user_id']" position="after">
+                    <field name="responsbile_for_partner" placeholder="Responsible(To Be Fill Up By Accounts)"/>
+            		<field name="check_primary_email" invisible="1"/>
+                </xpath>    
+
+            	<xpath expr="//field[@name='title']" position="after">
+                    <field name="partner_alias" placeholder="Alias(To Be Fill Up By Accounts)"/>
+                </xpath>
+
+                <xpath expr="//form[@string='Partners']" position="attributes">
+                	<attribute name="create">false</attribute>         
+                </xpath> 
+
+                <xpath expr="//field[@name='email']" position="attributes">
+                	<attribute name="attrs">{'invisible': [('user_id','=',False)]}</attribute>   
+                </xpath> 
+
+ 
+            	<xpath expr="//form[@string='Partners']/sheet" position="before">
+            		<header>
+            			<button name="validate_partner" states="draft" string="Confirm Partner" type="object" groups="account.group_account_manager,account.group_account_user,account.group_account_invoice" />
+            			<button name="reject_partner" states="draft" string="Reject Partner" type="object" groups="account.group_account_manager,account.group_account_user,account.group_account_invoice" />
+                    	<field name="state" widget="statusbar" statusbar_visible="draft,confirm,cancel" statusbar_colors='{"draft":"red","confirm":"green,"}'/>
+                    </header>
+                </xpath>            	
+
+            	<xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="partner_sequence" nolabel="1" placeholder="Customer ID" readonly="1" />
+                </xpath>
+                
+            	<xpath expr="//field[@name='active']" position="after">
+                
+                    <field name="prepaid" />
+                    <field name="postpaid"  />
+                </xpath>
+                                
+				<xpath expr="//field[@name='website']" position="after">
+					<field name="vertical" widget="selection" groups="account.group_account_manager,account.group_account_user,account.group_account_invoice"/>
+					<field name="partner_type" invisible="1"/>
+					<field name="routesms_cust_id"/>
+					<field name="routesms_remark" readonly="1"/>
+					<field name="domain" readonly="0"/>
+					<field name="crm_lead_state" invisible="1"/>
+             	</xpath>  
+
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                	<attribute name="required">1</attribute>         
+                </xpath>               	
+
+                <xpath expr="//field[@name='name']" position="attributes">
+                	<attribute name="placeholder">Company Name</attribute>         
+                </xpath>      
+                             
+                <xpath expr="//field[@name='comment']" position="attributes">
+                	<attribute name="placeholder">Reason For Rejection</attribute>         
+                </xpath>           
+
+
+
+				<xpath expr="//notebook" position="inside">
+					<!-- groups="base.group_user" -->
+				        <page string="Additional Contact Information" attrs="{'invisible': [('is_company','=',False), ('child_ids', '=', [])]}">
+				                    <group>
+				                        <group>
+				        					<field name="exclude_primary_email" invisible="0"/>
+				                        </group>
+				
+				                    </group>                        	
+				
+				        	<!-- <button name="add_user"  string="Add User" type="object" context="{'active_id': [active_id], 'line_id': partner_line,'routesms_cust_id':routesms_cust_id}" /> -->
+				            <field name="partner_line" attrs="{'readonly': [('email','=',False)]}">
+				                <form string="Contact Additional Information">
+				                	
+				                    <group>
+				                        <group>
+				                            <field name="domain" placeholder="Enter Domain"/>
+				                            <field name="email" placeholder="Enter Email Address"/>
+				                            <field name="send_email" invisible="0" />
+				                        </group>
+				
+				                    </group>
+				
+				                </form>
+				                <tree string="Contact Additional Information" editable="bottom">
+				                	
+				                   <field name="domain"/>
+				                    <field name="email"/>
+				                    <field name="send_email" invisible="0" />
+				                </tree>
+				            </field>
+				
+				        </page>          					
+				
+				</xpath>
+
+
+				<xpath expr="//notebook" position="inside">
+					<!-- groups="base.group_user" -->
+                        <page string="Add Users" attrs="{'invisible': ['|',('is_company','=',False),('state','!=','confirm')]}" >
+
+                    <group>
+                        <group string="USER DETAILS" >
+                            <field name="add_user" class="oe_inline" on_change="onchange_user_account(add_user)" context="{'active_id':active_id,'user_line':user_line}"/>
+                            <button name="action_manage_subroute" string="Manage Subroute" type="object" attrs="{'invisible': ['|',('manage_subroute','=',False),('is_manage_subroute','=',False)]}" /> 
+                            
+                        </group>
+                        <group string="SERVER AND PRICING" >
+                        	<field name="is_local_server" invisible="1" />
+                        	<field name="is_reseller_server" invisible="1" />
+                        	<field name="is_distributor_server" invisible="1" />
+                        	<field name="is_route_type" invisible="1" />
+                        	<field name="is_manage_subroute" invisible="1" readonly="0"/>
+                        	
+                            <field name="server" class="oe_inline" placeholder="Select Server" widget="selection" on_change="on_change_server(server)"/>
+                            <field name="user_email_temp" invisible="1"/>
+                            <field name="user_account_phone_number" placeholder="+918149769218" />
+                            
+                            <field name="manage_subroute" invisible="1"  />
+                            <field name="reseller_code" attrs="{'invisible': [('is_reseller_server','=',False)]}"/>
+                            <field name="distributor_code" attrs="{'invisible': [('is_distributor_server','=',False)]}"/>
+                            <field name="route_type" attrs="{'invisible': [('is_route_type','=',False)]}"/>
+                            <field name="routesms_notes" placeholder="Additional Comments" />
+                            <field name="local_price" attrs="{'invisible': [('server','=',False)],'readonly':[('is_local_server','=',False)]}" class="oe_inline" placeholder="Enter Local Price"/>
+                            <field name="od_limit" attrs="{'invisible': [('server','=',False)]}" class="oe_inline" placeholder="Enter OD Limit"/>
+                            <field name="credit_limit" attrs="{'invisible': [('server','=',False)],'readonly':['|',('prepaid','=',True),('postpaid','=',True)]}" class="oe_inline" placeholder="Enter Credit Limit"/>
+                            <field name="is_active" />
+                            <field name="agreement" />
+                        </group> 
+                        <group string="COMMERCIAL">
+                        		<field name="commercial_name"  />
+                        		<field name="commercial_phone" placeholder="country code and number" />
+                        		<field name="commercial_email" options="{'no_create_edit': True,'no_quick_create':False}" widget="many2many_tags" />	
+
+                        </group> 
+                        
+                        <group string="PRICE NOTIFICATION">
+                        		<field name="price_notification_name" />
+                        		<field name="price_notification_phone" placeholder="country code and number" />
+                        		<field name="price_notification_email" options="{'no_create_edit': True,'no_quick_create':False}" widget="many2many_tags" />	
+                        </group>
+
+                        <group string="ACCOUNTS">
+                        		<field name="account_name"  />
+                        		<field name="account_phone" placeholder="country code number" />
+                        		<field name="account_email" options="{'no_create_edit': True,'no_quick_create':False}" widget="many2many_tags" />	
+                        </group> 
+
+                        <group string="TECHNICAL">
+                        		<field name="technical_name"  />
+                        		<field name="technical_phone" placeholder="country code and number" />
+                        		<field name="technical_email" options="{'no_create_edit': True,'no_quick_create':False}" widget="many2many_tags" />	
+                        </group>                         
+
+                        
+                        <group>
+                            <!-- <button name="add_user" string="Add User" type="object" /> -->
+                            <button colspan="2" icon="fa-user" name="button_adding_user" string="Add User" type="object"  class="oe_inline oe_stat_button"/> 
+                        </group>         
+
+                        <group>
+                            <!-- <button name="add_user" string="Add User" type="object" /> -->
+                            <button colspan="2" class="oe_inline oe_stat_button" name="button_updating_user" string="Update User" type="object"  icon="fa-pencil" context="{'mode':'update'}"/> 
+                        </group>                                         
+
+                    </group>
+                        	
+                        	<!-- <button name="add_user"  string="Add User" type="object" context="{'active_id': [active_id], 'line_id': partner_line,'routesms_cust_id':routesms_cust_id}" /> -->
+                            <field name="user_line"  readonly="1">
+                            	
+                            	
+                                <form string="Add Users">
+                                    <group>
+                                        <group>
+                                            <field name="username" placeholder="Enter User" readonly="1"/>
+                                            <field name="server_domain" placeholder="Enter Server Address" widget="selection" readonly="1"/>
+                                            <field name="is_active" readonly="1"/>
+                                            <field name="manage_subroute" invisible="1" />
+                                            <field name="user_email_temp" placeholder="Enter Email" invisible="1" readonly="1"/>
+                                            <field name="user_account_phone_number" readonly="1" />
+                                            <field name="commercial_name_phone" readonly="1"/>
+                                            <field name="commercial_email" readonly="1"/>
+                                            <field name="price_notification_name_phone" readonly="1"/>
+                                            <field name="price_notification_email" readonly="1"/>
+                                            <field name="account_name_phone" readonly="1"/>
+                                            <field name="account_email" readonly="1"/>
+                                            <field name="technical_name_phone" readonly="1"/>
+                                            <field name="technical_email" readonly="1"/>
+                                            <field name="agreement" readonly="1"/>
+                                            
+				                            <field name="reseller_code" readonly="1"/>
+				                            <field name="distributor_code" readonly="1"/>
+				                            <field name="routesms_notes" readonly="1"/>                                            
+				                            <field name="local_price" readonly="1"/>
+				                            <field name="od_limit" readonly="1"/>
+				                            <field name="credit_limit" readonly="1"/>
+				                            <field name="status" readonly="1"/>
+				                            <field name="create_date" readonly="1"/>
+				                            <field name="update_date" readonly="1"/>
+				                            <field name="approved_by" widget="many2many_tags" class="oe_line" invisible="1" readonly="1"/>
+				                            <field name="approved_by_name" readonly="1"/>				                            
+											<field name="is_live" readonly="1" />	
+											<field name="route_type" />	
+											<field name="is_local_server" invisible="1" />									                                            
+                                            
+                                        </group>
+
+                                    </group>
+
+                                </form>
+                                <tree string="Add Users" editable="bottom" colors="red:status=='pending';green:status=='approved' " >
+                                		
+                                        <field name="username" placeholder="Enter User"/>
+                                        <field name="server_domain" placeholder="Enter Server Address" widget="selection"/>
+                                        <field name="is_active" />
+                                        <field name="manage_subroute" invisible="1" />
+                                        <field name="user_email_temp" placeholder="Enter Email"  invisible="1"/>
+                                        <field name="user_account_phone_number" readonly="1" />
+                                       	<field name="commercial_name_phone" />
+                                        <field name="commercial_email" />
+                                        <field name="price_notification_name_phone" />
+                                        <field name="price_notification_email" />
+                                        <field name="account_name_phone" />
+                                        <field name="account_email" />
+                                        <field name="technical_name_phone" />
+                                        <field name="technical_email" />
+                                        <field name="agreement" />
+			                            <field name="reseller_code" />
+			                            <field name="distributor_code" />
+			                            <field name="routesms_notes" />                                          
+			                            <field name="local_price" />
+			                            <field name="od_limit" />
+			                            <field name="credit_limit" />
+			                            <field name="status" />
+			                            <field name="create_date" />
+			                            <field name="update_date" />
+			                            <field name="approved_by" widget="many2many_tags" class="oe_line" invisible="1"/>
+			                            <field name="approved_by_name"/>	
+										<field name="is_live" readonly="1" /> 
+										<field name="route_type" />			
+										<field name="is_local_server" invisible="1" />
+										
+                                </tree>
+                            </field>
+
+                        </page>          					
+
+				</xpath>		
+
+
+
+
+		<xpath expr="//notebook" position="inside">
+					<!-- groups="base.group_user" -->
+                        <page string="Swap History">
+
+                            <field name="swap_history_line"  readonly="1">
+                            	
+                                <form string="Swap History">
+                                    <group>
+                                        <group>
+                                        	<field name="name" invisible="1"/>
+                                            <field name="from_bm_id" placeholder="Enter User"/>
+                                            <field name="to_bm_id" placeholder="Enter Server Address" widget="selection"/>
+											<field name="date" readonly="1" />	
+											<field name="partner_id" invisible="1"/>										                                            
+                                            
+                                        </group>
+
+                                    </group>
+
+                                </form>
+                                <tree string="Swap History" editable="bottom">
+                                	
+                                    	<field name="name" invisible="1"/>
+                                        <field name="from_bm_id" placeholder="Enter User"/>
+                                        <field name="to_bm_id" placeholder="Enter Server Address" widget="selection"/>
+										<field name="date" readonly="1" />	
+										<field name="partner_id" invisible="1"/>	
+                                </tree>
+                            </field>
+
+                        </page>          					
+
+		</xpath>	
+
+                <xpath expr="//field[@name='phone']" position="attributes">
+                	<attribute name="attrs">{'invisible': [('user_id','=',False)]}</attribute>   
+                </xpath> 
+
+                <xpath expr="//field[@name='mobile']" position="attributes">
+                	<attribute name="attrs">{'invisible': [('user_id','=',False)]}</attribute>   
+                </xpath> 
+
+
+
+                <xpath expr="//page[@string='Contacts']" position="replace">
+                        <page string="Contacts" attrs="{'invisible': [('is_company','=',False), ('child_ids', '=', [])]}" autofocus="autofocus">
+                            <field name="child_ids" mode="kanban" context="{'default_parent_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_supplier': supplier, 'default_customer': customer, 'default_use_parent_address': True}">
+                                <kanban>
+                                    <field name="color"/>
+                                    <field name="name"/>
+                                    <field name="title"/>
+                                    <field name="email"/>
+                                    <field name="parent_id"/>
+                                    <field name="is_company"/>
+                                    <field name="function"/>
+                                    <field name="phone"/>
+                                    <field name="street"/>
+                                    <field name="street2"/>
+                                    <field name="zip"/>
+                                    <field name="city"/>
+                                    <field name="country_id"/>
+                                    <field name="mobile"/>
+                                    <field name="fax"/>
+                                    <field name="state_id"/>
+                                    <field name="has_image"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
+                                            <div t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '')" style="position: relative">
+                                                <a t-if="! read_only_mode" type="delete" style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
+                                                <div class="oe_module_vignette">
+                                                <a type="open">
+                                                    <t t-if="record.has_image.raw_value === true">
+                                                        <img t-att-src="kanban_image('res.partner', 'image_small', record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/>
+                                                    </t>
+                                                    <t t-if="record.image and record.image.raw_value !== false">
+                                                        <img t-att-src="'data:image/png;base64,'+record.image.raw_value" class="oe_avatar oe_kanban_avatar_smallbox"/>
+                                                    </t>
+                                                    <t t-if="record.has_image.raw_value === false and (!record.image or record.image.raw_value === false)">
+                                                        <t t-if="record.is_company.raw_value === true">
+                                                            <img t-att-src='_s + "/base/static/src/img/company_image.png"' class="oe_kanban_image oe_kanban_avatar_smallbox"/>
+                                                        </t>
+                                                        <t t-if="record.is_company.raw_value === false">
+                                                            <img t-att-src='_s + "/base/static/src/img/avatar.png"' class="oe_kanban_image oe_kanban_avatar_smallbox"/>
+                                                        </t>
+                                                    </t>
+                                                </a>
+                                                    <div class="oe_module_desc">
+                                                        <div class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_color_border">
+                                                            <table class="oe_kanban_table">
+                                                                <tr>
+                                                                    <td class="oe_kanban_title1" align="left" valign="middle">
+                                                                        <h4><a type="open"><field name="name"/></a></h4>
+                                                                        <i><div t-if="record.function.raw_value">
+                                                                            <field name="function"/></div></i>
+                                                                        <!-- <div><a t-if="record.email.raw_value" title="Mail" t-att-href="'mailto:'+record.email.value">
+                                                                            <field name="email"/>
+                                                                        </a></div>
+                                                                        <div t-if="record.phone.raw_value">Phone: <field name="phone"/></div>
+                                                                        <div t-if="record.mobile.raw_value">Mobile: <field name="mobile"/></div>
+                                                                        <div t-if="record.fax.raw_value">Fax: <field name="fax"/></div> -->
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                                <form string="Contact">
+                                    <sheet>
+                                        <field name="image" widget='image' class="oe_avatar oe_left" options='{"preview_image": "image_medium"}'/>
+                                        <div class="oe_title">
+                                            <label for="name" class="oe_edit_only"/>
+                                            <h1><field name="name" style="width: 70%%"/></h1>
+                                            <field name="category_id" widget="many2many_tags" placeholder="Tags..." style="width: 70%%"/>
+                                        </div>
+                                        <group>
+                                            <field name="function" placeholder="e.g. Sales Director"/>
+                                            <field name="email"/>
+                                            <field name="phone"/>
+                                            <field name="mobile"/>
+                                        </group>
+                                        <div>
+                                            <field name="use_parent_address"/><label for="use_parent_address"/>
+                                        </div>
+                                        <group>
+                                            <label for="type"/>
+                                            <div name="div_type">
+                                                <field class="oe_inline" name="type"/>
+                                            </div>
+                                            <label for="street" string="Address" attrs="{'invisible': [('use_parent_address','=', True)]}"/>
+                                            <div attrs="{'invisible': [('use_parent_address','=', True)]}" name="div_address">
+                                                <field name="street" placeholder="Street..."/>
+                                                <field name="street2"/>
+                                                <div class="address_format">
+                                                    <field name="city" placeholder="City" style="width: 40%%"/>
+                                                    <field name="state_id" class="oe_no_button" placeholder="State" style="width: 37%%" options='{"no_open": True}' on_change="onchange_state(state_id)"/>
+                                                    <field name="zip" placeholder="ZIP" style="width: 20%%"/>
+                                                </div>
+                                                <field name="country_id" placeholder="Country" class="oe_no_button" options='{"no_open": True, "no_create": True}'/>
+                                            </div>
+                                        </group>
+                                        <field name="supplier" invisible="True"/>
+                                        <field name="customer" invisible="True"/>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+
+                </xpath> 
+
+
+
+
+
+ 
+                
+<!--                <xpath expr="//field[@name='phone']" position="attributes">
+                	<attribute name="password">False</attribute>
+                	<attribute name="attrs">{'invisible': [('state','!=','initial')]}</attribute>
+                </xpath>  
+                
+                <xpath expr="//field[@name='mobile']" position="attributes">
+                	<attribute name="password">False</attribute>
+                	<attribute name="attrs">{'invisible': [('state','!=','initial')]}</attribute>         
+                </xpath>  
+                
+                <xpath expr="//field[@name='fax']" position="attributes">
+                	<attribute name="password">False</attribute>
+                	<attribute name="attrs">{'invisible': [('state','!=','initial')]}</attribute> 
+                	        
+                </xpath>    
+                                              
+                
+                <xpath expr="//field[@name='email']" position="replace">
+                	<field name="email" password="False" attrs="{'required': [('user_ids','!=', [])],'invisible': [('state','!=','initial')]}"/>
+                	         
+                </xpath>-->                                             
+              	
+				<!-- <xpath expr="//field[@name='email']" position="after">
+					<field name="email_1" placeholder="Commercial"/>
+					<field name="email_2" placeholder="Commercial" attrs="{'invisible':[('flag', '=',True)]}" />
+					<field name="email_3" placeholder="Help Desk" attrs="{'invisible':[('flag', '=',True)]}" />
+					<field name="email_4" placeholder="Help Desk" attrs="{'invisible':[('flag', '=',True)]}" />
+					<field name="flag_function"/>					
+              	</xpath>              	 -->    
+
+          	
+              	
+              	
+           </field>
+        </record>
+
+
+
+        <record id="view_res_partner_filter_routesms" model="ir.ui.view">
+            <field name="name">res.partner.select.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//filter[@name='customer']" position="replace">
+                	<filter string="Customers" name="customer" domain="[('customer','=',1),('is_company','=',True)]" help="Customer Partners"/>
+                </xpath>            	
+
+            	
+                <xpath expr="//field[@name='name']" position="after">
+                	<field name="partner_sequence" string="Odoo Id"/>
+                </xpath>
+
+                <xpath expr="//field[@name='name']" position="attributes">
+                	<attribute name="filter_domain">['|','|',('display_name','=',self),('ref','=',self),('email','ilike',self)]</attribute>         
+                </xpath> 
+
+            </field>
+        </record>
+
+        <record id="view_partner_property_form_routesms" model="ir.ui.view">
+            <field name="name">res.partner.taxes.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='accounting']" position="attributes">
+                	<attribute name="groups">account.group_account_invoice,base.group_sale_manager</attribute>
+                </xpath>   
+
+                <xpath expr="//field[@name='property_account_position']" position="after">
+                	
+                	<field name="tan" placeholder="10 digit TAN number"/>
+                	<field name="pan" placeholder="10 digit PAN numbe"/>
+                	<field name="cin" />
+                	<field name="company_registery" />
+                	<field name="signatory" />
+                	
+                	
+                </xpath>
+            </field>
+        </record>
+
+
+            
+        <record id="view_country_group_form_routesms" model="ir.ui.view">
+            <field name="name">res.country.group.form.form</field>
+            <field name="model">res.country.group</field>
+            <field name="inherit_id" ref="base.view_country_group_form"/>
+            <field name="arch" type="xml">
+            	
+                <xpath expr="//field[@name='country_ids']" position="replace">
+                    <field name="country_ids" />
+                    
+                </xpath>            	            	
+            </field>
+        </record>
+    </data>
+</openerp>
+

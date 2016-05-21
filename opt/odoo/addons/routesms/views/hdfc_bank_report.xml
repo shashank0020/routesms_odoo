@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+<data>
+	<template id="report_bank_hdfc1">
+		<t t-call="routesms.external_layout_hdfc">
+			<div class="page" style='font-size:larger'>
+				<div class="row">
+					<div class="col-xs-4">
+						<span style="white-space:pre;">[] RTGS	[] NEFT(✓ appropriate box)</span>
+						<p>
+							<b>Name: </b><span t-field="o.partner_id.name"/><br/>
+								<b>Account Number: </b><span t-field="o.partner_bank_id.acc_number"/><br/>
+								<b>IFSC Code: </b><span t-field="o.partner_bank_id.bank_bic"/><br/>
+								<b>Date: </b><span t-field="o.date"/><br/>
+								<b>Time: </b><span t-esc="get_current_time(o)"/><br/>
+								<b>Cheque Number: </b><span t-field="o.cheque_number"/><br/>
+								<b>Amount: </b><span t-field="o.amount"/><br/>
+						</p>
+ 						
+ 					</div>						
+   	
+  					<div class="col-xs-8">
+  						<p>
+  							Please remit the funds as per details provide through <span style="white-space:pre;">[]  RTGS				[]  NEFT  (✓ the appropriate box)</span>
+							<br/>
+							<b>Branch Name: </b><span t-field="o.partner_bank_id.bank.state.name"/><br/>
+							<b>Date: </b><span t-field="o.date"/><br/>
+							<b>Time: </b><span t-esc="get_current_time(o)"/><br/>
+							<b>Customer Name: </b><span t-field="o.partner_id.name"/><br/>
+							<b>Account Number: </b><span t-field="o.partner_bank_id.acc_number"/><br/>
+							<b>Mobile: </b><span t-field="o.partner_bank_id.partner_id.mobile"/>  					
+  				
+  						</p>
+  
+						<p style="text-align: left;background-color: #010201;color: #F9F9F9">Benificiary Details</p>
+										  
+						<p>
+					  		<b>Name: </b><span t-field="o.partner_id.partner_alias"/><br/>
+							<b>Address: </b><span t-field="o.partner_bank_id.bank.street"/>
+							      	  <span t-field="o.partner_bank_id.bank.zip"/>
+								      <span t-field="o.partner_bank_id.bank.city"/>
+								      <span t-field="o.partner_bank_id.bank.state.name"/>
+								      <span t-field="o.partner_bank_id.bank.country.name"/><br/>				  	
+						  	<b>Account No: </b><span t-field="o.partner_bank_id.acc_number"/><br/>
+						  	<b>Confirm Account No: </b><span t-field="o.partner_bank_id.acc_number"/><br/>
+						  	<b>Bank Name amp; Branch: </b><span t-field="o.partner_bank_id.bank.name"/><br/>
+						  	<b>IFSC Code : </b><span t-field="o.partner_bank_id.bank_bic"/><br/>
+							<span style="white-space:pre;"><b>A/c Type Resident</b> []	Non Resident []</span><br/>
+							<b>Amount to be credited (in figures): </b> <span t-esc="get_amount_in_words(o.amount)"/>	<br/>	  	
+							<b>Remarks: </b><br/>
+								
+				 		</p> 
+					</div>	
+              </div>
+              <!-- 2nd row -->
+				<div class="row">
+					<div class="col-xs-4">
+						<b>Signature Stamp By Bank Staff</b>
+					</div>						
+			
+					<div class="col-xs-8">
+  						<table style="border: 1px solid black" class="table table-bordered">
+  							<tbody>
+  								<tr style=" font-size:smaller;" height="100px">
+  									<td style="vertical-align: bottom" >Signature of Authorized Signatory</td>
+  									<td  style="vertical-align: bottom">1st Signatory</td>
+  									<td style="vertical-align: bottom">2nd Signatory</td>
+  									<td style="vertical-align: bottom">3rd Signatory</td>
+  								</tr>
+
+						    </tbody>
+					  </table>
+					</div>	
+			  </div>              
+
+				<!-- ENDS -->
+				              
+          </div>
+      </t>
+  </template>
+
+<template id="report_bank_hdfc">
+    <t t-call="report.html_container">
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'routesms.report_bank_hdfc1')"/>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>
+
+
+

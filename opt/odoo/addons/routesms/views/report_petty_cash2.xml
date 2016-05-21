@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	
+
+	
+<template id="report_chequeupdated" >
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <!-- This report is (obviously) a work in progress -->
+            <div class="page" style='font-size:small'>
+            	<br></br>
+            	<br></br>
+                <!-- <address t-field="o.partner_id"
+                    t-field-options='{"widget": "contact", "fields": ["name"], "no_marker": true, "no_tag_br": true}' /> -->
+
+                    <div style="position: fixed;height:0px;top: 0px;right: 60px">
+						<span t-esc="formatLang(o.date , date=True)"/><br/>                    	
+                    </div>
+                    <!-- <div style="position: fixed;left: 30px">
+                    	<p t-field="o.partner_id.name"/>
+                    </div> -->
+				<!-- <div style="position: fixed;height:10px;top: 2px;left: 550px;width: 96%;font-size: small">
+                	<span t-esc="formatLang(o.date , date=True)"/><br/>
+                </div> -->
+                
+                <div style="position: fixed;height:0px;top: 40px;left: 325px">
+	                
+					<span t-esc="get_partner(o.partner_id)"/>
+		            <br/>                
+                </div>
+	                <br/> 
+	                <br/>
+                
+                <div style="position: fixed;height:0px;top: 80px;left: 325px">
+	                <!-- <span t-esc="fill_stars(o.amount_in_word)"/> -->
+	                <span t-esc="get_amount_in_words(o.amount)"/>
+	                <br/> 
+	                <br/> 
+	                <br/> 
+                
+                </div>
+                
+                <div style="position: fixed;height:0px;top: 160px;right: 186px">
+		                <span t-field="o.amount"
+		                    t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/><br/>
+		                    
+				</div>		                                 
+                <!-- <div style="position: fixed;height:10px;top: 110px;left: 420px;width: 96%;font-size: small">
+	                <span t-field="o.amount"
+	                    t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/><br/>
+	            </div> -->
+
+            </div>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

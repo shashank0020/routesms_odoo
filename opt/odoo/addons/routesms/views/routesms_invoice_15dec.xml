@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	
+
+   <template id="external_layout_header_inherit" inherit_id="report.external_layout_header">
+        <xpath expr="//div[@class='header']" position="replace">
+
+		    <div class="header">
+		        <div class="row">
+		            <div class="">
+		                	<!-- <img  t-if="company.baner" t-att-src="'data:image/png;base64,%s' % company.baner" style="position:absolute ;max-height: 100px;"/> -->		                	
+							            	
+		                	<!-- <img groups="routesms.group_routesms_active_report_banner" t-if="company.baner" t-att-src="'data:image/png;base64,%s' % company.baner" style="position:absolute ;width=300;max-height: 100px;"/> -->
+		                	<img groups="routesms.group_routesms_active_report_banner" t-if="company.baner" t-att-src="'data:image/png;base64,%s' % company.baner" width="900" height="100" />
+		                	
+		                	<!-- <img groups="routesms.group_routesms_inactive_report_banner" t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="position:absolute;right:-100% ;max-height: 60px;"/> -->		            
+		                	<img groups="routesms.group_routesms_inactive_report_banner" t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="position:absolute;right:45%" />
+		            </div>
+		            <!-- <div class="col-xs-9 text-right" style="margin-top:20px;" t-field="company.rml_header1"/> -->
+		        </div>
+		        <!-- <div class="row zero_min_height">
+		            <div class="col-xs-12">
+		                <div style="border-bottom: 1px solid black;"/>
+		            </div>
+		        </div> -->
+		        <!-- <div class="row">
+		            <div class="col-sm-3">
+		                <div t-field="company.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}" />
+		                 <span t-field="company.partner_id.email"/>
+		            </div>
+		        </div> -->		    
+		        
+		   </div>
+
+        </xpath>
+    </template>
+
+
+	
+<template id="report_invoice_routesms" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@class='page']" position="replace">
+            <div class="page" style='font-size: x-small'>
+
+            <div class="oe_structure"/>
+            <div class="row" groups="routesms.group_routesms_activate_invoice_line">
+            	<div t-if="o.type=='in_invoice'">
+            		<p groups="routesms.group_routesms_activate_invoice_line" style='text-align: center'> <strong style='font-size: x-small'>INVOICE</strong> </p>
+				</div>            		
+
+            	<div t-if="o.type=='out_invoice'">
+            		
+            		<p groups="routesms.group_routesms_activate_invoice_line" style='text-align: center'> <strong style='font-size: x-small'>INVOICE</strong> </p>
+				</div>            		
+
+            	<div t-if="o.type=='in_refund'">
+            		<p groups="routesms.group_routesms_activate_invoice_line" style='text-align: center'> <strong style='font-size: x-small'>DEBIT   NOTE</strong> </p>
+				</div>            		
+            	
+            	<div t-if="o.type=='out_refund'">
+            		
+            		<p groups="routesms.group_routesms_activate_invoice_line" style='text-align: center'> <strong style='font-size: x-small'>CREDIT   NOTE</strong> </p>
+				</div>            		
+
+            	<!-->
+            	<p groups="routesms.group_routesms_293holiday_users_custom" style='position: relative;right: -440px;font-size: small'><strong> TAX   INVOICES</strong></p>-->
+                <div class="col-xs-6">
+					<!-- <div style='color: #FFFFFF' t-if="o.company_id.partner_id.name"><span t-field="o.company_id.partner_id.name"/></div> -->										
+                    <!-- <div t-field="o.company_id.partner_id" 
+                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/> -->
+					<b><div t-if="o.company_id.partner_id.name"><span t-field="o.company_id.partner_id.name"/></div></b>
+                    <div t-if="o.company_id.partner_id.street"><span t-field="o.company_id.partner_id.street"/></div>
+                    <div t-if="o.company_id.partner_id.street2"><span t-field="o.company_id.partner_id.street2"/></div>
+                    <div t-if="o.company_id.partner_id.city"/><span t-field="o.company_id.partner_id.city"/>,<span t-field="o.company_id.partner_id.zip"/>
+                    <div t-if="o.company_id.partner_id.state_id"/><span t-field="o.company_id.partner_id.state_id.name"/>,<span t-field="o.company_id.partner_id.country_id.name"/>
+
+                    
+                    <div t-if="o.company_id.partner_id.phone">Tel: <span t-field="o.company_id.partner_id.phone"/></div>                    
+                    <div t-if="o.company_id.partner_id.cin">CIN:<span t-field="o.company_id.partner_id.cin"/></div>
+                    <div t-if="o.company_id.partner_id.pan">PAN: <span t-field="o.company_id.partner_id.pan"/></div>
+                    <div t-if="o.company_id.partner_id.company_registery">Service Tax Reg./VAT : <span t-field="o.company_id.partner_id.company_registery"/></div>
+                    <!-- <div class="mt8">
+                        <strong>Shipping address:</strong>
+                        <div t-field="o.partner_id" 
+                            t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                        <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+                    </div> -->                        
+                </div>
+                <div class="col-xs-5 col-xs-offset-1">
+                	
+                	<div t-if="o.use_contact_person_address">
+                		<b><div t-field="o.contact_id"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' /></b>
+                        <div t-if="o.contact_id">Contact Person: <span t-field="o.contact_id.name"/></div>
+                        <div t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></div>
+                        <div groups="routesms.group_routesms_activate_invoice_line" t-if="o.partner_id.partner_sequence">Customer Id: <span t-field="o.partner_id.partner_sequence"/></div>
+                        <div groups="routesms.group_routesms_activate_invoice_line" t-if="o.partner_id.user_id">Saleperson: <span t-field="o.partner_id.user_id"/></div>
+                        <div t-if="o.period_to_words">Period: <span t-field="o.period_to_words"/></div>                        
+                        <div t-if="o.number">Invoice: <span t-field="o.number"/></div>
+                        <div t-if="o.date_invoice">Invoice Date: <span t-field="o.date_invoice"/></div>
+                   </div>
+                        
+                    <div t-if="o.use_contact_person_address==False">
+                    <b><div t-field="o.partner_id"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' /></b>
+                        <div t-if="o.contact_id">Contact Person: <span t-field="o.contact_id.name"/></div>                       
+                        <div t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></div>
+                        <div groups="routesms.group_routesms_activate_invoice_line" t-if="o.partner_id.partner_sequence">Customer Id: <span t-field="o.partner_id.partner_sequence"/></div>
+                        <div groups="routesms.group_routesms_activate_invoice_line" t-if="o.partner_id.user_id">Saleperson: <span t-field="o.partner_id.user_id"/></div>
+                        <div t-if="o.period_to_words">Period: <span t-field="o.period_to_words"/></div>                        
+                        <div t-if="o.number">Invoice: <span t-field="o.number"/></div>
+                        <div t-if="o.date_invoice">Invoice Date: <span t-field="o.date_invoice"/></div>
+						</div>                    	
+
+                </div>               
+                
+            </div>
+
+<!-- for 29T -->
+
+            <div class="row" groups="routesms.group_routesms_293holiday_users_custom" style='font-size: large'>
+            	<p groups="routesms.group_routesms_activate_invoice_line" style='text-align: center'> <strong style='font-size: large'>INVOICE</strong> </p>
+            	<div t-if="o.type=='in_invoice'">
+					<p groups="routesms.group_routesms_293holiday_users_custom" style='position: relative;right: -540px;font-size: large'><strong> TAX   INVOICES</strong></p>            		
+            		
+            	</div>
+            	
+            	<div t-if="o.type=='out_invoice'">
+					<p groups="routesms.group_routesms_293holiday_users_custom" style='position: relative;right: -540px;font-size: large'><strong> TAX   INVOICES</strong></p>            		
+            		
+            	</div>
+
+            	<div t-if="o.type=='in_refund'">
+					<p groups="routesms.group_routesms_293holiday_users_custom" style='position: relative;right: -540px;font-size: large'><strong> DEBIT   NOTE</strong></p>            		
+            		
+            	</div>
+
+            	<div t-if="o.type=='out_refund'">
+					<p groups="routesms.group_routesms_293holiday_users_custom" style='position: relative;right: -540px;font-size: large'><strong> CREDIT   NOTE</strong></p>            		
+            		
+            	</div>
+            	
+            	
+                <div class="col-xs-6">
+					<!-- <div style='color: #FFFFFF' t-if="o.company_id.partner_id.name"><span t-field="o.company_id.partner_id.name"/></div> -->										
+                    <!-- <div t-field="o.company_id.partner_id" 
+                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/> -->
+					<b><div t-if="o.company_id.partner_id.name"><span t-field="o.company_id.partner_id.name"/></div></b>
+                    <div t-if="o.company_id.partner_id.street"><span t-field="o.company_id.partner_id.street"/></div>
+                    <div t-if="o.company_id.partner_id.street2"><span t-field="o.company_id.partner_id.street2"/></div>
+                    <div t-if="o.company_id.partner_id.city"/><span t-field="o.company_id.partner_id.city"/>,<span t-field="o.company_id.partner_id.zip"/>
+                    <div t-if="o.company_id.partner_id.state_id"/><span t-field="o.company_id.partner_id.state_id.name"/>,<span t-field="o.company_id.partner_id.country_id.name"/>
+
+                    
+                    <div t-if="o.company_id.partner_id.phone">Tel: <span t-field="o.company_id.partner_id.phone"/></div>                    
+                    <div t-if="o.company_id.partner_id.cin">CIN:<span t-field="o.company_id.partner_id.cin"/></div>
+                    <div t-if="o.company_id.partner_id.pan">PAN: <span t-field="o.company_id.partner_id.pan"/></div>
+                    <div t-if="o.company_id.partner_id.company_registery">Service Tax Reg./VAT : <span t-field="o.company_id.partner_id.company_registery"/></div>
+                    <!-- <div class="mt8">
+                        <strong>Shipping address:</strong>
+                        <div t-field="o.partner_id" 
+                            t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                        <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+                    </div> -->                        
+                </div>
+                <div class="col-xs-5 col-xs-offset-1">
+                	
+                	<div t-if="o.use_contact_person_address">
+                		<b><div t-field="o.contact_id"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' /></b>
+                        <div t-if="o.contact_id">Contact Person: <span t-field="o.contact_id.name"/></div>
+                        <div t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></div>
+                        <div groups="routesms.group_routesms_activate_invoice_line" t-if="o.partner_id.partner_sequence">Customer Id: <span t-field="o.partner_id.partner_sequence"/></div>
+                        <div groups="routesms.group_routesms_activate_invoice_line" t-if="o.partner_id.user_id">Saleperson: <span t-field="o.partner_id.user_id"/></div>
+                        <div t-if="o.period_to_words">Period: <span t-field="o.period_to_words"/></div>                        
+                        <div t-if="o.number">Invoice: <span t-field="o.number"/></div>
+                        <div t-if="o.date_invoice">Invoice Date: <span t-field="o.date_invoice"/></div>
+                   </div>
+                        
+                    <div t-if="o.use_contact_person_address==False">
+                    <b><div t-field="o.partner_id"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' /></b>
+                        <div t-if="o.contact_id">Contact Person: <span t-field="o.contact_id.name"/></div>
+                        <div t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></div>
+                        <div groups="routesms.group_routesms_activate_invoice_line" t-if="o.partner_id.partner_sequence">Customer Id: <span t-field="o.partner_id.partner_sequence"/></div>
+                        <div groups="routesms.group_routesms_activate_invoice_line" t-if="o.partner_id.user_id">Saleperson: <span t-field="o.partner_id.user_id"/></div>
+                        <div t-if="o.period_to_words">Period: <span t-field="o.period_to_words"/></div>                        
+                        <div t-if="o.number">Invoice: <span t-field="o.number"/></div>
+                        <div t-if="o.date_invoice">Invoice Date: <span t-field="o.date_invoice"/></div>
+						</div>                    	
+
+                   	</div>
+
+
+               
+                
+            </div>
+
+
+            <!-- <div class="oe_structure"/>
+            <div class="row">
+                <div class=".col-md-4">
+                    <strong >Invoice and shipping address:</strong>
+                    <strong >Invoice address:</strong>
+                    <strong >Invoice address:</strong>
+                    <strong >Invoice address:</strong>
+                    
+            	</div>
+
+                <div class="col-sm-3">
+                    <strong >Invoice and shipping address:</strong>
+                    <strong >Invoice address:</strong>
+                    
+            	</div>
+            	                <div class="col-sm-3">
+                    <strong >Invoice and shipping address:</strong>
+                    <strong >Invoice address:</strong>
+                    
+            	</div>            	
+            </div>
+            <div class="oe_structure"/> -->				    
+
+<!-- <div class="row">
+  <div class="col-xs-12">
+      <div class="col-xs-6">some content1</div>
+      <div class="col-xs-4">some other content1</div>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-xs-12">
+      
+        <div class="col-xs-6">some content2</div>
+        <div class="col-xs-4">some other content2</div>
+      
+  </div>
+</div>
+         -->           
+
+            <!-- <div class="row">
+                <div class="col-xs-5 col-xs-offset-7">
+                	
+                    <span t-field="o.partner_id" style="color: #FFFFFF"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                        <br></br>
+                        <br></br>
+                        <span t-field="o.partner_id.vat"/>
+<span style="display:block; height: 26px;"></span>
+                    <span t-field="o.partner_id"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />                    
+
+                    <br></br>
+                    <b>Phone: </b><span t-field="o.partner_id.phone"/>
+                    <br></br>
+                    <b>Fax: </b><span t-field="o.partner_id.fax"/>
+                    <br></br>
+                    <b>Service Tax Reg.: </b><span t-field="o.partner_id.company_registery"/>
+                    <br></br>
+                    <span t-field="o.partner_id.vat"/>                   
+                </div>
+            </div> -->
+
+            <!-- <h2>
+                <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">Invoice</span>
+                <span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">PRO-FORMA</span>
+                <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span>
+                <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span>
+                <span t-if="o.type == 'out_refund'">Refund</span>
+                <span t-if="o.type == 'in_refund'">Supplier Refund</span>
+                <span t-if="o.type == 'in_invoice'">Supplier Invoice</span>
+                <span t-field="o.number"/>
+            </h2> -->
+
+            <!-- <div class="row mt32 mb32"> -->
+
+                <!-- <div class="col-xs-2" t-if="o.user_id">
+                
+                    <strong>Booked By:</strong>
+                    <p t-field="o.user_id"/>
+                
+                </div> -->
+            	
+                <!-- <div class="col-xs-2" t-if="o.name">
+                
+                    <strong>Description:</strong>
+                    <p t-field="o.name"/>
+                
+                </div> -->
+                <!-- <strong>Source:</strong>
+                <div class="col-xs-2" t-if="o.date_invoice">
+                    <strong>Invoice Date:</strong>
+                    <p t-field="o.date_invoice"/>
+                </div>        -->        
+                 <!-- <div class="col-xs-2" t-if="o.origin">
+                    <strong>Source:</strong>
+                    <p t-field="o.origin"/>
+                </div>
+                <div class="col-xs-2" t-if="o.partner_id.ref">
+                    <strong>Customer Code:</strong>
+                    <p t-field="o.partner_id.ref"/>
+                </div>
+                <div class="col-xs-2" t-if="o.reference">
+                    <strong>Reference:</strong>
+                    <p t-field="o.reference"/>
+                </div> -->
+            <!-- </div> -->
+<!-- FOR AIR -->
+            <table style='font-size: large' class="table table-bordered" groups="routesms.group_routesms_293holiday_air">
+                <thead>
+                    <tr>
+                        <th groups="routesms.group_routesms_293holiday_air" >Passenger </th>
+                        <th groups="routesms.group_routesms_293holiday_air" >PNR</th>
+                        <th groups="routesms.group_routesms_293holiday_air" >Ticket No. </th>
+                        <th groups="routesms.group_routesms_293holiday_air" >Flight No.</th>
+                        <th groups="routesms.group_routesms_293holiday_air" >From</th>
+                        <th groups="routesms.group_routesms_293holiday_air" >To</th>
+                        <th groups="routesms.group_routesms_293holiday_air" >Ref</th>
+                        <th groups="routesms.group_routesms_293holiday_air">Description</th>
+                        <th groups="routesms.group_routesms_293holiday_air" >Travel Date</th>
+                        <th groups="routesms.group_routesms_293holiday_air">Amount</th>
+                        
+                        
+                    </tr>
+                </thead>
+                <tbody class="invoice_tbody">
+                    <tr t-foreach="o.invoice_line" t-as="l">
+                    	
+                                                
+                    	<td><span t-field="l.passenger_name_air" groups="routesms.group_routesms_293holiday_air" /></td>
+                    	<td><span t-field="l.pnr" groups="routesms.group_routesms_293holiday_air" /></td>
+                    	<td><span t-field="l.ticket_number" groups="routesms.group_routesms_293holiday_air" /></td>
+                    	<td><span t-field="l.flight_number" groups="routesms.group_routesms_293holiday_air" /></td>
+                    	<td><span t-field="l.from" groups="routesms.group_routesms_293holiday_air" /></td>
+                    	<td><span t-field="l.to" groups="routesms.group_routesms_293holiday_air" /></td>
+                    	<td><span t-field="l.holiday_refernce_number" groups="routesms.group_routesms_293holiday_air" /></td>
+                    	<td><span t-field="l.name" /></td>
+                    	<td><span t-field="l.travel_date"/></td>
+
+                        <td class="text-right">
+                            <span t-field="l.price_subtotal" 
+                                t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+<!-- FOR OTHERS 293holidays -->
+           <table style='font-size: large' class="table table-bordered" groups="routesms.group_routesms_293holiday_users">
+                <thead>
+                    <tr>
+                    	
+                    	<th >Description</th>
+                    	<th >Passenger</th>
+                    	<th >Amount</th>
+                    </tr>
+                </thead>
+                <tbody class="invoice_tbody">
+                    <tr t-foreach="o.invoice_line" t-as="l">
+                    	
+                                                
+                    	<td><span t-field="l.name" /></td>
+                    	<td><span t-field="l.passenger_name" /></td>
+                        <td class="text-left">
+                            <span t-field="l.price_subtotal" 
+                                t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+<!-- Ends -->            
+
+<!-- For other companies -->
+            <table groups="routesms.group_routesms_activate_invoice_line" class="table table-bordered">
+                <thead>
+                    <tr>
+						<th>Product</th>						              	
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th class="text-right">Unit Price</th>
+                        <th class="text-right" groups="sale.group_discount_per_so_line">Discount (%)</th>
+                        <!-- <th class="text-right" t-if="o.company_id.id in [10,16]" >Tax Amount</th> -->
+                        <th class="text-right">Taxes</th>
+                        <th class="text-right">Amount</th>
+                        
+                    </tr>
+                </thead>
+                <tbody class="invoice_tbody">
+                    <tr t-foreach="o.invoice_line" t-as="l">
+                    	<td><span t-field="l.product_id"/></td>
+                        <td><span t-field="l.name"/></td>
+                        <td>
+                            <span t-field="l.quantity"/>
+                            <span t-field="l.uos_id"  groups="product.group_uom"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="l.price_unit"/>
+                        </td>
+                        <td class="text-right" groups="sale.group_discount_per_so_line"><span t-field="l.discount"/></td>
+
+<!--                        <td class="text-right" t-if="o.company_id.id in [10,16]">
+                            <span t-field="l.tax_amount"/>
+                        </td>                        -->
+                        <td class="text-right">
+                            <span t-esc="', '.join(map(lambda x: x.name, l.invoice_line_tax_id))"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="l.price_subtotal" 
+                                t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+  <!-- <table class="table table-bordered" style="height:20px;top: 107px;left: 15px;width: 96%">
+	<thead>
+
+	</thead>
+	
+    <tbody>
+    	<tr>
+    		
+		 </tr>
+
+    </tbody>
+  </table> -->
+
+
+
+
+<!-- ends -->
+<!-- for other groups -->
+            <!-- <table class="table table-condensed" groups="routesms.group_routesms_293holiday_air">
+                <thead>
+                    <tr>
+                        <th groups="routesms.group_routesms_activate_invoice_line" >Description</th>
+                        <th groups="routesms.group_routesms_293holiday_air" >Passenger </th>
+                        <th groups="routesms.group_routesms_293holiday_air" >PNR</th>
+                        <th groups="routesms.group_routesms_293holiday_air" >Ticket No. </th>
+                        <th groups="routesms.group_routesms_293holiday_air" >Fligth No.</th>
+                        <th groups="routesms.group_routesms_293holiday_air" >From</th>
+                        <th groups="routesms.group_routesms_293holiday_air" >To</th>
+                        <th groups="routesms.group_routesms_293holiday_air" >Ref</th>
+                        <th groups="routesms.group_routesms_293holiday_air" >Date</th>
+                        <th groups="routesms.group_routesms_activate_invoice_line" >Quantity</th>
+                        <th class="text-right" groups="routesms.group_routesms_activate_invoice_line " >Unit Price</th>
+                        <th class="text-right" groups="sale.group_discount_per_so_line">Discount (%)</th>
+                        <th class="text-right" groups="routesms.group_routesms_activate_invoice_line" >Taxes</th>
+                        <th class="text-right" groups="routesms.group_routesms_activate_invoice_line" >Amount</th>
+                        <th groups="routesms.group_routesms_293holiday_air">Amount </th>
+                        
+                    </tr>
+                </thead>
+                <tbody class="invoice_tbody">
+                    <tr t-foreach="o.invoice_line" t-as="l">
+                    	
+                        <td><span t-field="l.name" groups="routesms.group_routesms_activate_invoice_line" /></td>
+                        <td>
+                            <span t-field="l.quantity" groups="routesms.group_routesms_activate_invoice_line"/>
+                            <span t-field="l.uos_id"  groups="routesms.group_routesms_activate_invoice_line"/>
+                        </td>
+                        
+                    	<td><span t-field="l.passenger_name_air" groups="routesms.group_routesms_293holiday_air" /></td>
+                    	<td><span t-field="l.pnr" groups="routesms.group_routesms_293holiday_air" /></td>
+                    	<td><span t-field="l.ticket_number" groups="routesms.group_routesms_293holiday_air" /></td>
+                    	<td><span t-field="l.flight_number" groups="routesms.group_routesms_293holiday_air" /></td>
+                    	<td><span t-field="l.from" groups="routesms.group_routesms_293holiday_air" /></td>
+                    	<td><span t-field="l.to" groups="routesms.group_routesms_293holiday_air" /></td>
+                    	<td><span t-field="l.holiday_refernce_number" groups="routesms.group_routesms_293holiday_air" /></td>
+                    	<td><span t-field="l.travel_date"/></td>
+                    	
+                    	
+
+                        <td class="text-right">
+                            <span t-field="l.price_unit" groups="routesms.group_routesms_activate_invoice_line" />
+                        </td>
+                        <td class="text-right" groups="routesms.group_routesms_activate_invoice_line">
+                        	<span t-field="l.discount"/></td>
+                        <td class="text-right">
+                            <span t-esc="', '.join(map(lambda x: x.name, l.invoice_line_tax_id))"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="l.price_subtotal" 
+                                t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table> -->
+
+<!-- ends -->
+
+
+<!-- custom tax and tax description spacing -->
+
+		<div>
+            <div groups="routesms.group_routesms_activate_invoice_line" class="row" >
+            	
+                <div class="col-xs-6">
+                    <table class="table table-bordered" t-if="o.tax_line">
+                        <thead>
+                            <tr >
+                                <th>Tax</th>
+                                <th class="text-right">Base</th>
+                                <th class="text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.tax_line" t-as="t">
+                            	<div t-if="t.name=='Output Service Tax @ 12.36%'">
+                                	<td><p>Output Service Tax @ 12 %</p></td>
+                                </div>
+                                <div t-if="t.name!='Output Service Tax @ 12.36%'">
+                                	<td><span t-field="t.name"/></td>
+                                </div>
+                                <td class="text-right">
+                                    <span t-field="t.base"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="t.amount"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                                            
+                </div>
+                <div class="col-xs-5 col-xs-offset-1">
+                	
+                     <table class="table table-bordered">
+                        <tr class="border-red">
+                            <td><strong>Total Without Taxes</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Taxes</td>
+                            <td class="text-right">
+                                <span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td><strong>Total</strong></td>
+                            <td class="text-right">
+                                 <span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+                
+            </div>
+            
+            
+<!-- for 29T -->            
+
+            <div class="row" style='font-size: large' groups="routesms.group_routesms_293holiday_users_custom">
+            	
+                <div class="col-xs-6">
+                    <table class="table table-bordered" t-if="o.tax_line">
+                        <thead>
+                            <tr >
+                                <th>Tax</th>
+                                <!--<th class="text-right">Base</th>-->
+                                <th class="text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.tax_line" t-as="t">
+                            	<div t-if="t.name=='Output Service Tax @ 12.36%'">
+                                	<td><p>Output Service Tax @ 12 %</p></td>
+                                </div>
+                                <div t-if="t.name!='Output Service Tax @ 12.36%'">
+                                	<td><span t-field="t.name"/></td>
+                                </div>
+<!--                                <td class="text-right">
+                                    <span t-field="t.base"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>-->
+                                <td class="text-right">
+                                    <span t-field="t.amount"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                                            
+                </div>
+                <div class="col-xs-5 col-xs-offset-1">
+                	
+                     <table class="table table-bordered">
+                        <tr class="border-red">
+                            <td><strong>Total Without Taxes</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Taxes</td>
+                            <td class="text-right">
+                                <span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td><strong>Total</strong></td>
+                            <td class="text-right">
+                                 <span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+                
+            </div>
+
+<!-- taxes descrition -->
+            <!-- <div class="row">
+                <div class="col-xs-4 pull-right">
+                    <table class="table table-condensed">
+                        <tr class="border-black">
+                            <td><strong>Total Without Taxes</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Taxes</td>
+                            <td class="text-right">
+                                <span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td><strong>Total</strong></td>
+                            <td class="text-right">
+                                 <span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                                
+            </div> -->
+
+
+	<!-- tax breakup -->
+
+
+            <!-- <div class="row" t-if="o.tax_line and o.company_id.id in [10,16] ">
+                <div class="col-xs-6">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Tax</th>
+                                <th class="text-right">Base</th>
+                                <th class="text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.tax_line" t-as="t">
+                                <td><span t-field="t.name"/></td>
+                                <td class="text-right">
+                                    <span t-field="t.base"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="t.amount"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> -->
+            
+
+<!-- for 29T -->	
+	 
+          <div style='font-size:large;position: fixed;height:10px;top: 930px;left: 15px;width: 96%' groups="routesms.group_routesms_293holiday_users_custom">
+			<tr>
+				<td>
+					<div t-if="o.amount_to_word_updated"><b><span t-field="o.amount_to_word_updated"/></b></div>			
+				</td>	
+			</tr>          	
+			<div>          	
+	            <p t-if="o.comment">
+	                <strong>Comment:</strong>
+	                <span t-field="o.comment"/>
+	            </p>
+	            <p t-if="o.payment_term.note">
+	                <strong>Payment Term:</strong>
+	                <span t-field="o.payment_term.note"/>
+	            </p>
+	            <p t-if="o.fiscal_position.note">
+	                <strong>Fiscal Position Remark:</strong>
+	                <span t-field="o.fiscal_position.note"/>
+	            </p>            
+		 	</div>		 
+			<div style='font-size: large' groups="routesms.group_routesms_293holiday_users_custom">
+			    <p>Terms Of Payment</p>
+				<p>1. CASH : Payment is to be made directly to the office.</p>
+				<p>2. CHEQUE : Cheques should be drawn in favour of Company's Name</p>
+				<p>3. RECEIPTS : Official Receipt duly signed will be considered valid.</p>
+				<p>4. OUTSTANDINGS : Int. @24%p.a. will be charged on overdue accounts.</p>
+				<p>E.&amp;O.E. Subject To MUMBAI Jurisdiction Only</p>
+			</div>
+
+			  <table class="table table-bordered" style='font-size: large' t-if="o.partner_bank_id" groups="routesms.group_routesms_293holiday_users_custom" >
+				<thead>
+				      <tr>
+				        <th>Bank Transfer Detail</th>
+				        
+				      </tr>
+				    </thead>
+			    <tbody>
+			      <tr>
+			        <td>
+			
+			
+			            <p t-if="o.partner_bank_id">
+			                
+			                
+			                <b>Bank Name : </b><span t-field="o.partner_bank_id.bank_name_invoice"/>
+			                <br></br>
+			                <b>Bank Address :</b><span t-if="o.partner_bank_id.bank.street" />
+			                	<span t-field="o.partner_bank_id.bank.street"/>
+			
+			                	
+			                	<span t-if="o.partner_bank_id.bank.street2"/>
+			                	<span t-field="o.partner_bank_id.bank.street2"/>
+			                	
+			                	<span t-if="o.partner_bank_id.bank.zip"/>
+			                	<span t-field="o.partner_bank_id.bank.zip"/>
+			                	
+			                	<span t-if="o.partner_bank_id.bank.city"/>
+			                	<span t-field="o.partner_bank_id.bank.city"/>
+			
+			                	<span t-if="o.partner_bank_id.bank.state"/>
+			                	<span t-field="o.partner_bank_id.bank.state.name"/>
+			                	
+			                	<span t-if="o.partner_bank_id.bank.country"/>
+			                	<span t-field="o.partner_bank_id.bank.country.name"/>
+			                	
+			                
+			                <br></br>
+			                <b>Owner : </b><span t-field="o.partner_bank_id.partner_id.name"/>
+			                <br></br>
+			                <b>Account Number : </b><span t-field="o.partner_bank_id.acc_number"/>
+			                <br></br>
+			                <b>Swift Code : </b><span t-field="o.partner_bank_id.bank_bic"/>
+			                <br></br>
+			                <b>IBAN : </b><span t-field="o.partner_bank_id.iban"/>
+			                <br></br>
+			                <b>Sort Code : </b><span t-field="o.partner_bank_id.bank_sort_code"/>
+			                
+			                
+			            </p>  
+			
+			
+			        </td>
+			        
+			      </tr>
+			
+			    </tbody>
+			  </table>
+			              
+           </div>            
+
+
+
+
+
+	<div style='position: fixed;height:10px;top: 670px;left: 15px;width: 96%' groups="routesms.group_routesms_activate_invoice_line">           
+  
+
+	<tr >
+		<td>
+			<div t-if="o.amount_to_word_updated"><b><span t-field="o.amount_to_word_updated"/></b></div>			
+		</td>
+	</tr>
+  	
+	<div>
+            <p t-if="o.comment">
+                <strong>Comment:</strong>
+                <span t-field="o.comment"/>
+            </p>
+            <p t-if="o.payment_term.note">
+                <strong>Payment Term:</strong>
+                <span t-field="o.payment_term.note"/>
+            </p>
+            <p t-if="o.fiscal_position.note">
+                <strong>Fiscal Position Remark:</strong>
+                <span t-field="o.fiscal_position.note"/>
+            </p>   		
+		
+		
+	</div>  	
+  	<table  class="table table-bordered" t-if="o.partner_bank_id">
+		<thead>
+		      <tr>
+		        <th>Bank Transfer Detail</th>
+		        
+		      </tr>
+		    </thead>
+	    <tbody>
+	      <tr>
+	        <td>
+	
+	
+	            <p t-if="o.partner_bank_id">
+	                
+	                
+	                <b>Bank Name : </b><span t-field="o.partner_bank_id.bank_name_invoice"/>
+	                <br></br>
+	                <b>Bank Address :</b><span t-if="o.partner_bank_id.bank.street" />
+	                	<span t-field="o.partner_bank_id.bank.street"/>
+	
+	                	
+	                	<span t-if="o.partner_bank_id.bank.street2"/>
+	                	<span t-field="o.partner_bank_id.bank.street2"/>
+	                	
+	                	<span t-if="o.partner_bank_id.bank.zip"/>
+	                	<span t-field="o.partner_bank_id.bank.zip"/>
+	                	
+	                	<span t-if="o.partner_bank_id.bank.city"/>
+	                	<span t-field="o.partner_bank_id.bank.city"/>
+	
+	                	<span t-if="o.partner_bank_id.bank.state"/>
+	                	<span t-field="o.partner_bank_id.bank.state.name"/>
+	                	
+	                	<span t-if="o.partner_bank_id.bank.country"/>
+	                	<span t-field="o.partner_bank_id.bank.country.name"/>
+	                	
+	                
+	                <br></br>
+	                <b>Owner : </b><span t-field="o.partner_bank_id.partner_id.name"/>
+	                <br></br>
+	                <b>Account Number : </b><span t-field="o.partner_bank_id.acc_number"/>
+	                <br></br>
+	                <b>Swift Code : </b><span t-field="o.partner_bank_id.bank_bic"/>
+	                <br></br>
+	                <b>IBAN : </b><span t-field="o.partner_bank_id.iban"/>
+	                <br></br>
+	                <b>Sort Code : </b><span t-field="o.partner_bank_id.bank_sort_code"/>
+	                
+	                
+	            </p>  
+	
+	
+	        </td>
+	        
+	      </tr>
+	
+	    </tbody>
+  </table>
+</div>			
+</div>
+
+<!-- for 29T -->
+
+            <!-- <div class="row">
+                <div class="col-xs-4 pull-right">
+
+		            <p style="text-align:right">For    <span t-field="o.company_id.name"/></p>
+		            
+                </div>
+            </div> -->
+
+
+
+<!-- for 29T -->
+		<div  groups="routesms.group_routesms_293holiday_users_custom" style="position: fixed;height:10px;top: 1530px;left: 15px;width: 96%;font-size: large">
+			
+            <div class="row" >
+                <div class="col-xs-4 pull-right">
+
+		            <p >
+		                For <span t-field="o.company_id.name"/>
+		                	                
+		            </p>
+
+                </div>
+            </div>            
+            <div class="row">
+                <div class="col-xs-4 pull-right">
+                	<br></br>
+
+                	<br></br>
+		            <p >
+		                <strong>Authorize Signatory</strong>
+		                	                
+		            </p>
+		            <span t-field="o.partner_id.signatory"/>
+                </div>
+         	</div>            
+         </div>	
+
+
+<!-- <div style="position: fixed;height:10px;top: 768px;left: 16px;width: 96%">
+	<p>
+		ST Category : Information Technology Software Services
+	</p>
+	
+</div> -->
+		
+		<div groups="routesms.group_routesms_activate_invoice_line" style="position: fixed;height:10px;top: 930px;left: 15px;width: 96%">
+            <div class="row" >
+                <div class="col-xs-4 pull-right">
+
+		            <p >
+		                For <span t-field="o.company_id.name"/>
+		                	                
+		            </p>
+
+                </div>
+            </div>            
+            <div class="row">
+                <div class="col-xs-4 pull-right">
+                	<br></br>
+
+                	<br></br>
+		            <p >
+		                <strong>Authorize Signatory</strong>
+		                	                
+		            </p>
+		            <span t-field="o.partner_id.signatory"/>
+                </div>
+            </div>
+
+			
+			
+		</div>
+		<div groups="routesms.group_routesms_activate_invoice_line" style="position: fixed;height:10px;top: 1000px;left: 15px;width: 96%">
+			
+			<p># This is Computer Generated Invoice, No Signature Required</p>
+			<p># Please specify purpose of remittance as "PURCHASE OF ENTERPRISE MESSAGING SOLUTION (BULKSMS)"</p>				
+			
+		</div>
+
+
+		
+	</div>                
+
+
+	</xpath>
+</template>
+</data>
+</openerp>

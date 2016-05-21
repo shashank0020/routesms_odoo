@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validateForm() {
+    var x = document.forms["myForm"]["fname"].value;
+    //if (x == null || x == "") {
+		if (x) {
+			body="Dear Shashank ,"
+		window.location="mailto:shashank_verma0020@bistacloud.com?subject=hii&body="+body;
+        //alert("Name must be filled out");
+        return false;
+    
+    }
+}
+
+</script>
+
+</head>
+
+
+<body>
+
+<form name="myForm" action="demo_form.asp1"
+ method="post" onsubmit="return validateForm()" >
+Name: <input type="text" name="fname">
+<input type="submit" value="Submit" >
+
+</form>
+
+</body>
+</html>

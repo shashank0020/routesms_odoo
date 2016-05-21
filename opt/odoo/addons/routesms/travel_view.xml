@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<!-- Tree view starts -->
+
+        <record id="view_city_code_tree" model="ir.ui.view">
+            <field name="name">city.code.tree</field>
+            <field name="model">city.code</field>
+            <field name="arch" type="xml">
+                <tree string="City Code">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="active"/>
+                    
+                </tree>
+            </field>
+        </record>
+
+		<!-- Tree view end -->
+		
+		
+		<!-- Form view starts -->
+        <record id="view_city_code_form" model="ir.ui.view">
+            <field name="name">city.code.form</field>
+            <field name="model">city.code</field>
+            <field name="arch" type="xml">
+                <form string="City Code">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" class="oe_inline"/>
+                            <field name="code" class="oe_inline"/>
+                            <field name="active" class="oe_inline"/>
+                        </group>
+                    </group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+		<!-- Form view ends -->
+
+		<!-- Search view starts -->
+        <record id="view_city_code_filter" model="ir.ui.view">
+            <field name="name">city.code.list.select</field>
+            <field name="model">city.code</field>
+            <field name="arch" type="xml">
+                <search string="Search Code">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <!-- <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+                    </group> -->
+               </search>
+            </field>
+        </record>
+
+		<!-- Search view ends -->
+		
+		<!-- Action view starts -->
+        <record id="action_city_code" model="ir.actions.act_window">
+            <field name="name">City Code</field>
+            <field name="res_model">city.code</field>
+            <field name='view_type'>form</field>
+            <field name='view_mode'>tree,form</field>
+            
+            <!-- <field name="search_view_id" ref="view_vertical_business_filter"/> -->
+            
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create city code for Holiday Business.
+                </p>
+            </field>
+        </record>
+        <!-- Action view ends -->
+        
+        <!-- Menuitems starts -->
+        
+		<menuitem id="main_menu_city_code" name="City Code" parent="base.menu_administration" sequence="8"/>
+        <menuitem action="action_city_code" name="City Code" id="menu_city_code" parent="main_menu_city_code" sequence="1"/>
+
+		<!-- Menuitems ends -->
+		
+<!-- customer filter -->
+
+		<!-- Tree view starts -->
+
+        <record id="view_routesms_partner_filter_tree" model="ir.ui.view">
+            <field name="name">routsms.partner.filter.tree</field>
+            <field name="model">routsms.partner.filter</field>
+            <field name="arch" type="xml">
+                <tree string="Partners">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                   <field name="lead_status"/> 
+                </tree>
+            </field>
+        </record>
+
+		<!-- Tree view end -->
+
+
+		<!-- Action view starts -->
+        <record id="action_routesms_partner_filter" model="ir.actions.act_window">
+            <field name="name">Partners</field>
+            <field name="res_model">routsms.partner.filter</field>
+            <field name='view_type'>tree</field>
+            <field name='view_mode'>tree</field>
+            
+            <!-- <field name="search_view_id" ref="view_vertical_business_filter"/> -->
+            
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    No Record Found .
+                </p>
+            </field>
+        </record>
+        <!-- Action view ends -->
+        
+        <!-- Menuitems starts -->
+        
+		<menuitem id="main_menu_routesms_partner_filter" name="Partners" parent="base.menu_administration" sequence="8"/>
+        <menuitem action="action_routesms_partner_filter" name="Partners" id="menu_routesms_partner_filter" parent="main_menu_city_code" sequence="1"/>
+
+		<!-- Menuitems ends -->		
+
+    </data>
+</openerp>

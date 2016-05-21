@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+<!-- TOP MENU -->
+
+        <menuitem name="Authorization" id="base_menu_authenticate_users" sequence="22"/>
+		<menuitem id="main_menu_authenticate_users" parent="base_menu_authenticate_users" name="Authorization" sequence="1" />
+<!-- ENDS -->
+
+<!-- AUTHENTICATE USER --> 
+
+		<!-- Tree view starts -->
+		<record id="view_authenticate_users_pending_tree" model="ir.ui.view">
+			<field name="name">authenticate.users.pending.tree</field>
+			<field name="model">authenticate.users</field>
+			<field name="arch" type="xml">
+				<tree string="Users" editable="bottom">
+					<field name="creation_date" readonly="1"/>
+					<field name="updation_date" readonly="1"/>
+					<field name="create_record" invisible="1"/>
+					<field name="type" invisible="1" />
+					<field name="name" invisible="1" />
+					<field name="is_active" readonly="1" />
+					<field name="business_manager" readonly="1" />
+					<field name="odoo_id" readonly="1"/>
+					<field name="account_type" readonly="1"/>
+					<field name="partner_id" readonly="1"/>
+					<field name="user_obj" invisible="1"/>
+					<field name="user_name" readonly="1"/>
+					<field name="server" readonly="1"/>
+					<field name="user_email_temp" readonly="1" invisible="1" />
+					<field name="user_account_phone_number" readonly="1" />
+					<field name="manage_subroute" readonly="1"/>
+					<field name="commercial_name_phone" readonly="1" />
+					<field name="commercial_email" readonly="1"/>
+					<field name="price_notification_name_phone" readonly="1"/>
+					<field name="price_notification_email" readonly="1"/>
+					<field name="account_name_phone" readonly="1"/>
+					<field name="account_email" readonly="1"/>
+					<field name="technical_name_phone" readonly="1"/>
+					<field name="technical_email" readonly="1"/>	
+					<field name="agreement" readonly="1" />
+					<field name="local_price" attrs="{'readonly': [('is_local_server','=',False)]}" />
+					<field name="od_limit" readonly="0"/>
+					<field name="credit_limit" readonly="1"/>
+					<field name="reseller_code" readonly="1"/>
+					<field name="distributor_code" readonly="1"/>
+					<field name="routesms_notes" readonly="1"/>
+					<field name="route_type" readonly="1"/>					
+					<field name="reason_to_reject"/>
+					<field name="rejected_by" invisible="1"/>
+					<field name="rejected_by_name" invisible="1" />
+					<field name="is_local_server" invisible="1" />
+					
+					<field name="user_id" invisible="1"/>
+					<field name="employee_id" invisible="1"/>
+					<field name="record_read" invisible="1"/>
+					<button name="approve" type="object" string="Approve" class="oe_highlight" 
+						icon="terp-approve-useraccount"/>
+					<button name="reject" type="object" string="Reject" class="oe_highlight" 
+						icon="terp-reject-useraccount"/>	
+				</tree>
+			</field>
+		</record>
+
+		<!-- Tree view end -->
+		
+		<!-- Tree view starts approval -->
+		<record id="view_authenticate_users_approve_tree" model="ir.ui.view">
+			<field name="name">authenticate.users.tree.approve</field>
+			<field name="model">authenticate.users</field>
+			<field name="arch" type="xml">
+				<tree string="Users" editable="bottom">
+					<field name="creation_date" readonly="1"/>
+					<field name="updation_date" readonly="1"/>
+					<field name="create_record" invisible="1"/>
+					<field name="type" invisible="1" />
+					<field name="name" invisible="1" readonly="1"/>
+					<field name="is_active" readonly="1" />
+					<field name="business_manager" readonly="1" />
+					<field name="odoo_id" readonly="1"/>
+					<field name="account_type" readonly="1"/>
+					<field name="partner_id" readonly="1"/>
+					<field name="user_obj" invisible="1"/>
+					<field name="user_name" readonly="1"/>
+					<field name="server" readonly="1" />
+					<field name="user_email_temp" readonly="1" invisible="1"/>
+					<field name="user_account_phone_number" readonly="1" />
+					<field name="manage_subroute" readonly="1"/>
+                    <field name="commercial_name_phone" readonly="1"/>
+                    <field name="commercial_email" readonly="1"/>
+                    <field name="price_notification_name_phone" readonly="1"/>
+                    <field name="price_notification_email" readonly="1"/>
+                    <field name="account_name_phone" readonly="1"/>
+                    <field name="account_email" readonly="1"/>
+                    <field name="technical_name_phone" readonly="1"/>
+                    <field name="technical_email" readonly="1" />
+                    					
+					<field name="agreement" readonly="1"/>
+					<field name="local_price" readonly="1" />
+					<field name="od_limit" readonly="1"/>
+					<field name="credit_limit" readonly="1"/>
+					<field name="reseller_code" readonly="1"/>
+					<field name="distributor_code" readonly="1"/>
+					<field name="routesms_notes" readonly="1"/>
+					<field name="route_type" readonly="1"/>					
+					<field name="rejected_by" invisible="1"/>
+					<field name="rejected_by_name" invisible="1" />
+					<field name="is_local_server" invisible="1" />
+					<field name="record_read" invisible="1"/>
+					<field name="user_id" invisible="1"/>
+					<field name="employee_id" invisible="1"/>
+					<field name="approved_by_name" readonly="1"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- Tree view end -->
+
+
+		<!-- Tree view starts reject -->
+		<record id="view_authenticate_users_reject_tree" model="ir.ui.view">
+			<field name="name">authenticate.users.tree.reject</field>
+			<field name="model">authenticate.users</field>
+			<field name="arch" type="xml">
+				<tree string="Users" editable="bottom">
+					<field name="creation_date" readonly="1"/>
+					<field name="updation_date" readonly="1"/>
+					<field name="create_record" invisible="1"/>
+					<field name="type" invisible="1" />
+					<field name="name" invisible="1" readonly="1"/>
+					<field name="is_active" readonly="1" />
+					<field name="business_manager" readonly="1" />
+					<field name="odoo_id" readonly="1"/>
+					<field name="account_type" readonly="1"/>
+					<field name="partner_id" readonly="1"/>
+					<field name="user_obj" invisible="1"/>
+					<field name="user_name" readonly="1"/>
+					<field name="server" readonly="1"/>
+					<field name="user_email_temp" readonly="1" invisible="1" />
+					<field name="user_account_phone_number" readonly="1" />
+					<field name="manage_subroute" readonly="1"/>
+                    <field name="commercial_name_phone" readonly="1"/>
+                    <field name="commercial_email" readonly="1"/>
+                    <field name="price_notification_name_phone" readonly="1" />
+                    <field name="price_notification_email" readonly="1"/>
+                    <field name="account_email" readonly="1"/>
+                    <field name="account_name_phone" readonly="1"/>
+                    <field name="technical_name_phone" readonly="1"/>
+                    <field name="technical_email" readonly="1"/>
+                    	
+                     
+                    					
+					<field name="agreement" readonly="1"/>
+					<field name="local_price" readonly="1" />
+					<field name="od_limit" readonly="1"/>
+					<field name="credit_limit" readonly="1"/>
+					<field name="reseller_code" readonly="1"/>
+					<field name="distributor_code" readonly="1"/>
+					<field name="routesms_notes" readonly="1"/>
+					<field name="route_type" readonly="1"/>
+					<field name="reason_to_reject" readonly="1"/>
+					<field name="rejected_by" invisible="1"/>
+					<field name="rejected_by_name" readonly="1" />
+					<field name="is_local_server" invisible="1" />
+					<field name="record_read" invisible="1"/>
+					<field name="user_id" invisible="1"/>
+					<field name="employee_id" invisible="1"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- Tree view end -->
+
+		<!-- search view -->
+        <record id="view_authenticate_users_search" model="ir.ui.view">
+            <field name="name">authenticate.users.search</field>
+            <field name="model">authenticate.users</field>
+            <field name="arch" type="xml">
+                <search string="Authenticate User">
+
+                    <group expand="0" string="Group By">
+                        <filter string="Business Manager" domain="[]" context="{'group_by':'business_manager'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+		<!-- search view ends -->
+
+		<!-- Action view starts for Pending User Forms-->
+		<record id="action_authenticate_users" model="ir.actions.act_window">
+			<field name="name">Pending Approval</field>
+			<field name="res_model">authenticate.users</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree</field>
+			<field name="view_id" ref="view_authenticate_users_pending_tree"/>
+			<field name="search_view_id" ref="view_authenticate_users_search"/>			
+			<field name="domain">[('type','=','pending')]</field>
+			<field name="context">{'type': 'pending'}</field>			
+
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">No Record Found .</p>
+			</field>
+		</record>
+		<!-- Action view ends -->
+
+		<!-- Action view starts for Approved User Forms-->
+		<record id="action_authenticate_approved_users" model="ir.actions.act_window">
+			<field name="name">Approved Credit Limit/OD Limit/Local Price Change</field>
+			<field name="res_model">authenticate.users</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree</field>
+			<field name="view_id" ref="view_authenticate_users_approve_tree"/>
+			<field name="search_view_id" ref="view_authenticate_users_search"/>
+			<field name="domain">[('type','=','approved')]</field>
+			<field name="context">{'type': 'approved'}</field>			
+
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">No Record Found .</p>
+			</field>
+		</record>
+		<!-- Action view ends -->
+
+		<!-- Action view starts for Rejected User Forms-->
+		<record id="action_authenticate_rejected_users" model="ir.actions.act_window">
+			<field name="name">Rejected Forms</field>
+			<field name="res_model">authenticate.users</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree</field>
+			<field name="view_id" ref="view_authenticate_users_reject_tree"/>
+			<field name="search_view_id" ref="view_authenticate_users_search"/>
+			<field name="domain">[('type','=','rejected')]</field>
+			<field name="context">{'type': 'rejected'}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">No Record Found .</p>
+			</field>
+		</record>
+		<!-- Action view ends -->
+
+		<!-- Menuitems starts -->
+
+		<!-- <menuitem id="main_menu_routesms_partner_filter" name="Partners" parent="base.menu_administration" sequence="8"/> -->
+		<menuitem action="action_authenticate_users" name="Pending Approval" id="menu_authenticate_users" parent="main_menu_authenticate_users" sequence="1"/>
+		<menuitem action="action_authenticate_approved_users" name="Approved Credit Limit/OD Limit/Local Price Change" id="menu_authenticate_approved_users" parent="main_menu_authenticate_users" sequence="2"/>
+		<menuitem action="action_authenticate_rejected_users" name="Rejected Forms" id="menu_authenticate_rejected_users" parent="main_menu_authenticate_users" sequence="3"/>
+		
+
+		<!-- Menuitems ends -->
+
+	</data>
+</openerp>

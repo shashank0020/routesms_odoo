@@ -1,0 +1,65 @@
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2012 OpenERP SA (<http://openerp.com>)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+
+import datetime
+from lxml import etree
+import math
+import pytz
+import urlparse
+
+import openerp
+from openerp import tools, api
+from openerp.osv import osv, fields
+from openerp.osv.expression import get_unaccent_wrapper
+from openerp.tools.translate import _
+
+
+
+class vertical_business(osv.osv):
+    _name = 'vertical.business'
+    _description='Add verticals of your business'
+    
+    _columns={
+              
+            'name':fields.char('Name',size=30),
+            'code':fields.char('Code',size=10),
+            'active':fields.boolean('Active'),
+            'company_id': fields.many2many('res.company', 'vertical_company_rel',
+                      'vertical_id', 'company_id', 'Companies',),
+                                    
+            }
+    
+    
+    def default_get(self, cr, uid, fields, context):
+        #import ipdb;ipdb.set_trace()
+        if fields :
+            print 'Ho'
+            
+        if context is None:
+            context = {}
+
+        res={}
+        
+        
+        return res
+    
+    
+vertical_business()

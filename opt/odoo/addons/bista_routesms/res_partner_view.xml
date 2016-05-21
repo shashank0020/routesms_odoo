@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="partner_form_sequence" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='parent_id']" position="after">
+                
+                    <field name="partner_sequence" nolabel="1" placeholder="Customer ID" />
+                    
+                    
+                </xpath>
+                
+            	<xpath expr="//field[@name='active']" position="after">
+                
+                    <field name="prepaid" />
+                    <field name="postpaid" />
+                </xpath>                
+				<xpath expr="//field[@name='website']" position="after">
+					<field name="vertical" widget="selection"/>
+              	</xpath>  
+              	
+				<xpath expr="//field[@name='email']" position="after">
+					<field name="email_1"/>
+					<field name="email_2"/>
+              	</xpath>              	
+            </field>
+        </record>
+
+
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.taxes.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='property_account_position']" position="after">
+                	<field name="tan" placeholder="10 digit TAN number"/>
+                	<field name="pan" placeholder="10 digit PAN numbe"/>
+                </xpath>
+            </field>
+        </record>
+
+
+            
+        <record id="view_country_group_form_inherit" model="ir.ui.view">
+            <field name="name">res.country.group.form.form</field>
+            <field name="model">res.country.group</field>
+            <field name="inherit_id" ref="base.view_country_group_form"/>
+            <field name="arch" type="xml">
+            	
+                <xpath expr="//field[@name='country_ids']" position="replace">
+                    <field name="country_ids" />
+                    
+                </xpath>            	            	
+            </field>
+        </record>
+    </data>
+</openerp>
+

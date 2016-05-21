@@ -1,0 +1,19 @@
+
+
+<openerp>
+    <data>
+        <template id="listing">
+
+ <html>
+<body>
+<div class="main_container">
+	<p class="text-uppercase">Uppercssased text.</p>
+</div>
+</body>
+</html>
+			
+
+        </template>
+    </data>
+</openerp>
+

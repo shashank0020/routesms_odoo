@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+
+<!-- TREE VIEW -->
+
+        <record id="view_routesms_employee_tree" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='job_id']" position="after">
+					<field name="role"/>
+					<field name="routesms_username"/>   
+                </xpath>
+             </field>
+        </record>  
+
+<!-- ENDS -->
+
+
+
+<!-- FORM VIEW -->
+
+        <record id="routesms_hr_form" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+
+		<xpath expr="//notebook" position="inside">
+			<page string="Synchronization Detail">
+				<group>
+					<group>
+						<field name="last_sync_date"  readonly="1"/>
+					</group>
+				</group>
+                  	 </page> 
+		</xpath>
+
+                <xpath expr="//field[@name='job_id']" position="after">
+					<field name="role" options="{'no_create':False}"/>
+					<field name="routesms_username" placeholder="Enter RouteSmS Username"/>   
+                </xpath>
+
+                <xpath expr="//field[@name='job_id']" position="attributes">
+					<attribute name="widget">selection</attribute>  
+                </xpath>
+
+             </field>
+        </record>  
+
+<!-- ENDS -->
+
+	</data>
+</openerp>

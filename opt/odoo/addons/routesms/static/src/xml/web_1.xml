@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-extend="WebClient">
+        <t t-jquery="td.announcement_bar" t-operation="replace">
+          <div class="announcement_bar">
+            <span>You have conquered this spot.</span>
+          </div>
+        </t>
+    </t>
+</templates>

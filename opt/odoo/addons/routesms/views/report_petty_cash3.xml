@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	
+
+	
+<template id="report_check" >
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <!-- This report is (obviously) a work in progress -->
+            <div class="page">
+            	
+            		<div>
+            			<span t-esc="get_partner(o.partner_id)"/>
+            		</div>
+<!--				<address t-field="o.partner_id"
+                  			  t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true, "no_tag_br": true}' />
+-->
+
+
+                <span t-esc="formatLang(o.date , date=True)"/><br/>
+                <div t-if="o.cheque_number"><strong>Cheque Number : </strong> <span t-esc="o.cheque_number"/></div>
+				
+                <strong>Amount : </strong> <span t-field="o.amount"
+                    t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/><br/>
+                <span t-esc="get_amount_in_words(o.amount)"/>
+
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                        	 <th>Inv No.</th>
+                        	 <th>Payment Method</th>
+                            <th>Due Date</th>
+                            <!--<th>Description</th>-->
+                            <th>Original Amount</th>
+                            <th>Open Balance</th>
+                            <!--<th>Discount</th>-->
+                            <th>Payment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="o.line_dr_ids" t-as="l">
+	
+
+                            <td class="text-right"><span t-esc="l.move_line_id.ref"/></td>
+						    <td class="text-left"><span t-esc="o.journal_id.code"/></td>
+							<td class="text-left" ><span t-esc="l.date_due"/></td>
+							<!--<td class="text-center"><span t-esc="formatLang(l.name)"/></td>-->
+							<td class="text-left"><span t-esc="formatLang(l.amount_original)"/></td>
+							<td class="text-left"><span t-esc="formatLang(l.amount_unreconciled)"/></td>
+							<td class="text-left"><span t-esc="l.amount"/></td>
+  
+                        </tr>
+                    </tbody>
+                </table>           
+                
+				<b><div t-if="o.narration"><span t-field="o.narration"/></div></b>                
+                
+                
+
+                  			              
+	</div>   
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

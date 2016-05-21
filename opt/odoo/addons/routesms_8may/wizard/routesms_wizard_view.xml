@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="account_invoice_holiday_wizard_view" model="ir.ui.view">
+             <field name="name">Account Holiday wizard</field>
+             <field name="model">account.invoice.holiday.wizard</field>
+             <field name="arch" type="xml">
+                <form string="Holiday Business Verticals">
+                    <separator string="Holiday Business Verticals"/>
+                    <label string="Select Vertical for your business"/>
+                    <field name="holiday_vertical_list" class="oe_inline"/>
+                    <footer>
+                        <button name="submit" string="Submit" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+             </field>
+         </record>
+
+        <record id="action_account_invoice_holiday_wizard_view" model="ir.actions.act_window">
+            <field name="name">Holidy selection</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice.holiday.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account_invoice_holiday_wizard_view"/>
+            <field name="target">new</field>
+            
+        </record>
+
+        <menuitem
+            icon="STOCK_EXECUTE"
+            name="Travel"
+            action="action_account_invoice_holiday_wizard_view"
+            id="menu_account_invoice_holiday_wizard_view"
+            parent="account.menu_finance_receivables"
+            groups="routesms.group_routesms_293holiday_users_custom"/>
+
+
+<!-- Wizard for customer filter -->
+
+        <record id="routesms_partner_filter_wizard_view" model="ir.ui.view">
+             <field name="name">Search Partner</field>
+             <field name="model">partner.custom.filter</field>
+             <field name="arch" type="xml">
+                <form string="Customer Search">
+                    <separator string="Customer Search"/>
+                    <label string="Customer Search"/>
+                    <field name="partner_name" class="oe_inline"/>
+                    <footer>
+                        <button name="submit" string="Submit" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+             </field>
+         </record>
+
+        <record id="action_routesms_partner_filter_wizard_view" model="ir.actions.act_window">
+            <field name="name">Search Partner</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">partner.custom.filter</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="routesms_partner_filter_wizard_view"/>
+            <field name="target">new</field>
+            
+        </record>
+
+        <menuitem
+            icon="STOCK_EXECUTE"
+            name="Customer Search"
+            action="action_routesms_partner_filter_wizard_view"
+            id="menu_routesms_partner_filter_wizard_view"
+            parent="base.menu_sales"/>
+            
+    </data>
+</openerp>

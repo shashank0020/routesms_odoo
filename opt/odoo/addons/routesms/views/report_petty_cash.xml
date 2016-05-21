@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	
+
+	
+<template id="report_pettycash" >
+    <t t-call="report.external_layout">
+        <t t-foreach="docs" t-as="o">        
+            <div class="page" style='font-size:small'>
+
+            <div class="oe_structure"/>
+            <div class="row">
+
+
+
+                <div class="col-xs-6">
+					<b><div t-if="o.company_id.partner_id.name"><span t-field="o.company_id.partner_id.name"/></div></b>
+                    <div t-if="o.company_id.partner_id.street"><span t-field="o.company_id.partner_id.street"/></div>
+                    <div t-if="o.company_id.partner_id.street2"><span t-field="o.company_id.partner_id.street2"/></div>
+                    <div t-if="o.company_id.partner_id.city"/><span t-field="o.company_id.partner_id.city"/>,<span t-field="o.company_id.partner_id.zip"/>
+                    <div t-if="o.company_id.partner_id.state_id"/><span t-field="o.company_id.partner_id.state_id.name"/>,<span t-field="o.company_id.partner_id.country_id.name"/>
+
+                    
+                    <div t-if="o.company_id.partner_id.phone">Tel: <span t-field="o.company_id.partner_id.phone"/></div>                    
+                    <div t-if="o.company_id.partner_id.cin">CIN:<span t-field="o.company_id.partner_id.cin"/></div>
+                    <div t-if="o.company_id.partner_id.pan">PAN: <span t-field="o.company_id.partner_id.pan"/></div>
+                    <div t-if="o.company_id.partner_id.company_registery">Service Tax Reg./VAT : <span t-field="o.company_id.partner_id.company_registery"/></div>
+                      
+                </div>                
+                <div class="col-xs-5 col-xs-offset-1">
+                	
+
+                        <div t-if="o.name">Voucher Number: <b><span t-field="o.name"/></b></div>
+                        <div t-if="o.date">Date: <span t-field="o.date"/></div>
+                        
+                </div>
+                
+            </div>
+
+
+         
+	        <p class="text-right" t-if="o.balance_start">
+	        	<b>
+	            	Starting Balance: <span t-field="o.balance_start"/>
+	            </b> 
+	        </p>
+                        
+            <table  class="table table-bordered">
+                <thead>
+                    <tr>
+												              	
+                        <th>Text</th>
+                        <th>Date</th>
+                        <th>Partner Account</th>
+                        <th>Dr/Cr</th>
+                        
+                    </tr>
+                </thead>
+                <tbody class="invoice_tbody">
+                    <tr t-foreach="o.line_ids" t-as="l">
+                    	<td><span t-field="l.name"/></td>
+                        <td><span t-field="l.date"/></td>
+                        <td>
+                            <span t-field="l.partner_id"/>
+                            
+                        </td>
+                        <td><span t-field="l.amount"/></td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+
+					
+                        <p class="text-right" t-if="o.balance_end_real">
+                            <b>Ending Balance: <span t-field="o.balance_end_real"/>
+                            </b> 
+                        </p>
+
+
+
+		
+	</div>                
+
+        </t>
+    </t>
+	
+</template>
+</data>
+</openerp>

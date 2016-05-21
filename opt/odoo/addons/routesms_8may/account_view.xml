@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_routesms_account_customer_invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+            	
+                <xpath expr="//field[@name='partner_id']" position="after">
+                	<field name="contact_id" widget="selection" attrs="{'invisible': [('partner_id','=',False)]}" domain="[('parent_id','in',[partner_id])]"/> 
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                	       
+                	<attribute name="domain">[('customer','=',True),('is_company','=',True)]</attribute>   
+                </xpath>
+
+                <xpath expr="//field[@name='user_id']" position="after">
+                	<field name="employee_id" readonly="1" invisible="0"/>
+                	<field name="credit_type"/>
+                	<field name="remark"/>
+                	<field name="amount_to_word"/>
+                </xpath>
+                                
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                	<attribute name="on_change">account_onchange_user(user_id)</attribute>         
+                </xpath>
+                
+                <xpath expr="//field[@name='product_id']" position="after">
+                	<field name="passenger_name_air" groups="routesms.group_routesms_293holiday_air"/>
+                	
+                	<field name="passenger_name" groups="routesms.group_routesms_293holiday_users"/>
+                	
+                	<field name="pnr" groups="routesms.group_routesms_293holiday_air"/>
+                	<field name="ticket_number" groups="routesms.group_routesms_293holiday_air"/>         
+                	<field name="flight_number" groups="routesms.group_routesms_293holiday_air"/>
+                	<field name="travel_date" groups="routesms.group_routesms_293holiday_air"/>
+                	<field name="holiday_refernce_number" groups="routesms.group_routesms_293holiday_air"/>
+                	<field name="from" groups="routesms.group_routesms_293holiday_air"/>
+                	<field name="to" groups="routesms.group_routesms_293holiday_air"/>
+                	<field name="basic_amount" groups="routesms.group_routesms_293holiday_air"/>
+                	
+                	<field name="gross_amount" groups="routesms.group_routesms_293holiday_users"/>
+                	
+                	<field name="markup_air" groups="routesms.group_routesms_293holiday_air"/>
+                	
+                	<field name="markup" groups="routesms.group_routesms_293holiday_users"/>
+                	
+                </xpath>
+
+
+                <xpath expr="//field[@name='quantity']" position="attributes">
+                	<attribute name="groups">routesms.group_routesms_activate_invoice_line</attribute>         
+                </xpath>
+                
+                <xpath expr="//field[@name='price_unit']" position="attributes">
+                	<attribute name="groups">routesms.group_routesms_activate_invoice_line</attribute>         
+                </xpath>
+                
+                <xpath expr="//field[@name='price_subtotal']" position="attributes">
+                	<attribute name="groups">routesms.group_routesms_activate_invoice_line</attribute>         
+                </xpath>
+                
+                                
+                <xpath expr="//field[@name='currency_id']" position="attributes">
+                	<attribute name="domain">[('company_id', 'in', [company_id])]</attribute>         
+                </xpath>
+
+
+
+                <!-- <xpath expr="//field[@name='invoice_line_tax_id']" position="after">
+                	<field name="sub_total_amount_air" on_change="onchange_subtotal_amount_air(sub_total_amount_air)" groups="routesms.group_routesms_293holiday_air"/>
+                </xpath> -->
+                
+                <xpath expr="//field[@name='invoice_line_tax_id']" position="after">
+                	<field name="sub_total_amount" on_change="onchange_subtotal_amount(sub_total_amount)" groups="routesms.group_routesms_293holiday_users,routesms.group_routesms_293holiday_air"/>
+                </xpath>                                
+                
+            </field>
+        </record>
+
+
+
+        <record id="view_routesms_account_supplier_invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+            	
+                <xpath expr="//field[@name='partner_id']" position="after">
+                	<field name="contact_id" widget="selection" attrs="{'invisible': [('partner_id','=',False)]}" domain="[('parent_id','in',[partner_id])]"/> 
+                </xpath>
+                
+                <!-- <xpath expr="//field[@name='partner_id']" position="attributes">
+                	<field name="contact_id" widget="selection" attrs="{'invisible': [('partner_id','=',False)]}" domain="[('parent_id','in',[partner_id])]"/> 
+                </xpath> -->                
+
+                <!-- <xpath expr="//field[@name='partner_id']" position="attributes">
+                	       
+                	<attribute name="domain">[('supplier','=',True),('is_company','=',True)]</attribute>   
+                </xpath> -->
+                
+                <xpath expr="//field[@name='user_id']" position="after">
+                	<field name="employee_id" readonly="1"/>
+                </xpath>
+                                
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                	<attribute name="on_change">account_onchange_user(user_id)</attribute>         
+                </xpath>              
+
+
+                <xpath expr="//field[@name='product_id']" position="after">
+                	<field name="passenger_name_air" groups="routesms.group_routesms_293holiday_air"/>
+                	
+                	<field name="passenger_name" groups="routesms.group_routesms_293holiday_users"/>
+                	
+                	<field name="pnr" groups="routesms.group_routesms_293holiday_air"/>
+                	<field name="ticket_number" groups="routesms.group_routesms_293holiday_air"/>         
+                	<field name="flight_number" groups="routesms.group_routesms_293holiday_air"/>
+                	<field name="travel_date" groups="routesms.group_routesms_293holiday_air"/>
+                	<field name="holiday_refernce_number" groups="routesms.group_routesms_293holiday_air"/>
+                	<field name="from" groups="routesms.group_routesms_293holiday_air"/>
+                	<field name="to" groups="routesms.group_routesms_293holiday_air"/>
+                	<field name="basic_amount" groups="routesms.group_routesms_293holiday_air"/>
+                	
+                	<field name="gross_amount" groups="routesms.group_routesms_293holiday_users"/>
+                	
+                	<field name="markup_air" groups="routesms.group_routesms_293holiday_air"/>
+                	
+                	<field name="markup" groups="routesms.group_routesms_293holiday_users"/>
+                	
+                </xpath>
+
+
+                <xpath expr="//field[@name='quantity']" position="attributes">
+                	<attribute name="groups">routesms.group_routesms_activate_invoice_line</attribute>         
+                </xpath>
+                
+                <xpath expr="//field[@name='price_unit']" position="attributes">
+                	<attribute name="groups">routesms.group_routesms_activate_invoice_line</attribute>         
+                </xpath>
+                
+                <xpath expr="//field[@name='price_subtotal']" position="attributes">
+                	<attribute name="groups">routesms.group_routesms_activate_invoice_line</attribute>         
+                </xpath>
+                
+                                
+                <xpath expr="//field[@name='currency_id']" position="attributes">
+                	<attribute name="domain">[('company_id', 'in', [company_id])]</attribute>         
+                </xpath>
+
+
+
+                <xpath expr="//field[@name='invoice_line_tax_id']" position="after">
+                	<field name="sub_total_amount" on_change="onchange_subtotal_amount(sub_total_amount)"/>       
+                </xpath>    
+
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                	<attribute name="domain">[('supplier', '=', True)]</attribute>          
+                </xpath>
+
+                                   
+                                   
+                                
+            </field>
+        </record>
+
+        <record id="routesms_account_voucher_receipt_form" model="ir.ui.view">
+            <field name="name">account.voucher.inherit</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_receipt_form"/>
+            <field name="arch" type="xml">
+            	
+                <xpath expr="//field[@name='partner_id']" position="after">
+                	<field name="contact_id" widget="selection" attrs="{'invisible': [('partner_id','=',False)]}" domain="[('parent_id','in',[partner_id])]"/> 
+                </xpath>
+
+
+                <xpath expr="//field[@name='company_id']" position="after">
+                	<field name="user_id" on_change="account_onchange_user(user_id)"/>
+                	<field name="employee_id" readonly="1"/>
+                	<field name="credit_type"/>
+                	<field name="remark"/>
+                	<field name="voucher_seq_number" readonly="1"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='amount_original']" position="after">
+                	<field name="invoice_amount"/>
+                </xpath>
+                                
+
+                                                
+             </field>
+        </record>    
+
+
+
+        <record id="routesms_account_voucher_vendor_form" model="ir.ui.view">
+            <field name="name">account.voucher.inherit</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='company_id']" position="after">
+                	<field name="voucher_seq_number" readonly="1"/>
+                </xpath>
+                                                
+             </field>
+        </record>            
+        
+        
+
+
+
+    </data>
+</openerp>
+
